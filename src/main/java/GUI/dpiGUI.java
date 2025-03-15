@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import DPIoperations.ColorToGray;
 import LogsImage.ImageBuffer;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -62,6 +63,7 @@ public class dpiGUI extends javax.swing.JFrame {
         GrayImage = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButtonConverter = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabelOriginalImage = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -73,7 +75,6 @@ public class dpiGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1360, 720));
-        setPreferredSize(new java.awt.Dimension(1360, 720));
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jLabel3.setText("Bem Vindo ao Programa de Processamento Digital De Imagem, Selecione as opções Desejadas no Menu.");
@@ -133,7 +134,7 @@ public class dpiGUI extends javax.swing.JFrame {
         GrayImage.setLayout(GrayImageLayout);
         GrayImageLayout.setHorizontalGroup(
             GrayImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 249, Short.MAX_VALUE)
         );
         GrayImageLayout.setVerticalGroup(
             GrayImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,6 +145,13 @@ public class dpiGUI extends javax.swing.JFrame {
 
         jLabel2.setText("Imagem Apos Conversão");
 
+        jButtonConverter.setText("Converter");
+        jButtonConverter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConverterActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ConvertToGrayLayout = new javax.swing.GroupLayout(ConvertToGray);
         ConvertToGray.setLayout(ConvertToGrayLayout);
         ConvertToGrayLayout.setHorizontalGroup(
@@ -153,11 +161,16 @@ public class dpiGUI extends javax.swing.JFrame {
                 .addGroup(ConvertToGrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
                     .addComponent(OriginalImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(127, 127, 127)
-                .addGroup(ConvertToGrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(GrayImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE))
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addGroup(ConvertToGrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(ConvertToGrayLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ConvertToGrayLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jButtonConverter, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(GrayImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(65, 65, 65))
         );
         ConvertToGrayLayout.setVerticalGroup(
             ConvertToGrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,10 +179,16 @@ public class dpiGUI extends javax.swing.JFrame {
                 .addGroup(ConvertToGrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(ConvertToGrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(OriginalImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(GrayImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ConvertToGrayLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(OriginalImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ConvertToGrayLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(GrayImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ConvertToGrayLayout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(jButtonConverter)))
                 .addContainerGap(82, Short.MAX_VALUE))
         );
 
@@ -238,20 +257,26 @@ public class dpiGUI extends javax.swing.JFrame {
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagens", "jpg","png");
         
         JFileChooser JFCimage = new JFileChooser();
+        
         JFCimage.setFileSelectionMode(JFileChooser.FILES_ONLY);
         JFCimage.setAcceptAllFileFilterUsed(false);
         JFCimage.addChoosableFileFilter(filter);
-        //
+
         if(JFCimage.showOpenDialog(this) == JFileChooser.APPROVE_OPTION){
             File file = JFCimage.getSelectedFile();
             
             try {
-               
                 BufferedImage img = ImageIO.read(file);
                 imageBuffer.setImage(img);
+                
+                imagePanel.setImage(img);
+                imagePanel.revalidate();
+                
+                jPanel1.setLayout(new BorderLayout());
+                jPanel1.add(imagePanel, BorderLayout.CENTER);
+                
+                imagePanel.repaint();
                 pack();
-                imagePanel.setImage(img);   
-                jPanel1.repaint();
               
             } catch (IOException ex) {
                 Logger.getLogger(dpiGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -267,16 +292,33 @@ public class dpiGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
         cardLayout.show(mainPanel,"ConvertToGray");
-   
-        imagePanel = new ImagePanel();
+            
+        BufferedImage img = imageBuffer.getImage();
         OriginalImage.setLayout(new BorderLayout());
         OriginalImage.add(imagePanel, BorderLayout.CENTER);
         OriginalImage.revalidate();
         OriginalImage.repaint();
-        BufferedImage img = imageBuffer.getImage();
         imagePanel.setImage(img);
         
+        
+        
+        
+        
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jButtonConverterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConverterActionPerformed
+        // TODO add your handling code here:
+        BufferedImage img = imageBuffer.getImage();
+        ColorToGray RGBtoGray = new ColorToGray();
+        RGBtoGray.toGray(img);
+        GrayImage.setLayout(new BorderLayout());
+        GrayImage.add(imagePanel, BorderLayout.CENTER);
+        GrayImage.revalidate();
+        GrayImage.repaint();
+        imagePanel.setImage(img);
+        
+        
+    }//GEN-LAST:event_jButtonConverterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -317,6 +359,7 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JPanel ConvertToGray;
     private javax.swing.JPanel GrayImage;
     private javax.swing.JPanel OriginalImage;
+    private javax.swing.JButton jButtonConverter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
