@@ -43,6 +43,7 @@ public class dpiGUI extends javax.swing.JFrame {
         jPanel1.repaint();
         
         mainPanel.add(ConvertToGray,"ConvertToGray");
+        mainPanel.add(inversalPanel,"inversalPanel");
         mainPanel.add(jPanel1,"jPanel1");
         imageBuffer = new ImageBuffer();
         
@@ -77,14 +78,19 @@ public class dpiGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButtonConverter = new javax.swing.JButton();
+        inversalPanel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        originalGrayPanel = new javax.swing.JPanel();
+        inversalGrayPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jLabelOriginalImage = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1360, 720));
@@ -207,23 +213,72 @@ public class dpiGUI extends javax.swing.JFrame {
 
         getContentPane().add(ConvertToGray, "card3");
 
-        jLabelOriginalImage.setText("Imagem Original");
+        jLabel4.setText("Original Cinza");
+
+        jLabel5.setText("Inversa ");
+
+        javax.swing.GroupLayout originalGrayPanelLayout = new javax.swing.GroupLayout(originalGrayPanel);
+        originalGrayPanel.setLayout(originalGrayPanelLayout);
+        originalGrayPanelLayout.setHorizontalGroup(
+            originalGrayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        originalGrayPanelLayout.setVerticalGroup(
+            originalGrayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout inversalGrayPanelLayout = new javax.swing.GroupLayout(inversalGrayPanel);
+        inversalGrayPanel.setLayout(inversalGrayPanelLayout);
+        inversalGrayPanelLayout.setHorizontalGroup(
+            inversalGrayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 282, Short.MAX_VALUE)
+        );
+        inversalGrayPanelLayout.setVerticalGroup(
+            inversalGrayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 213, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout inversalPanelLayout = new javax.swing.GroupLayout(inversalPanel);
+        inversalPanel.setLayout(inversalPanelLayout);
+        inversalPanelLayout.setHorizontalGroup(
+            inversalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inversalPanelLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(inversalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                    .addComponent(originalGrayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(160, 160, 160)
+                .addGroup(inversalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inversalGrayPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(129, Short.MAX_VALUE))
+        );
+        inversalPanelLayout.setVerticalGroup(
+            inversalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inversalPanelLayout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addGroup(inversalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addGap(36, 36, 36)
+                .addGroup(inversalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(inversalGrayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(originalGrayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(149, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(inversalPanel, "card5");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelOriginalImage)
-                .addContainerGap(744, Short.MAX_VALUE))
+            .addGap(0, 839, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabelOriginalImage)
-                .addContainerGap(435, Short.MAX_VALUE))
+            .addGap(0, 476, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1, "card3");
@@ -252,6 +307,14 @@ public class dpiGUI extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem2);
+
+        jMenuItem3.setText("Inverter o Cinza");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem3);
 
         jMenuBar1.add(jMenu3);
 
@@ -346,6 +409,33 @@ public class dpiGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonConverterActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
+        cardLayout.show(mainPanel,"inversalPanel");
+        
+        BufferedImage img = imageBuffer.getImage();
+
+        if(img != null){
+            
+            BufferedImage copyImage = copyImage(originalImage);
+            ColorToGray RGBtoGray = new ColorToGray();
+            
+            BufferedImage grayImage = RGBtoGray.toGray(copyImage);
+            
+            ImagePanel grayOriginalPanel = new ImagePanel();
+            grayOriginalPanel.setImage(grayImage);
+            originalGrayPanel.removeAll();
+            originalGrayPanel.setLayout(new BorderLayout());
+            originalGrayPanel.add(grayOriginalPanel, BorderLayout.CENTER);
+            originalGrayPanel.revalidate();
+            originalGrayPanel.repaint();
+        }
+        
+        
+        
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -385,19 +475,24 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JPanel ConvertToGray;
     private javax.swing.JPanel GrayImage;
     private javax.swing.JPanel OriginalImage;
+    private javax.swing.JPanel inversalGrayPanel;
+    private javax.swing.JPanel inversalPanel;
     private javax.swing.JButton jButtonConverter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabelOriginalImage;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel originalGrayPanel;
     // End of variables declaration//GEN-END:variables
 }
