@@ -8,6 +8,7 @@ import DPIoperations.ColorToGray;
 import LogsImage.ImageBuffer;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -22,8 +23,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Daza_
  */
 public class dpiGUI extends javax.swing.JFrame {
-    private ImagePanel imagePanel;
-    private ImageBuffer imageBuffer;
+    private final ImagePanel imagePanel;
+    private final ImageBuffer imageBuffer;
+    private BufferedImage originalImage;
     /**
      * Creates new form dpiGUI
      */
@@ -31,7 +33,7 @@ public class dpiGUI extends javax.swing.JFrame {
             
         initComponents();
         setLocationRelativeTo(null);
-        
+
         mainPanel.setLayout(new CardLayout());
         
         imagePanel = new ImagePanel();
@@ -44,7 +46,18 @@ public class dpiGUI extends javax.swing.JFrame {
         mainPanel.add(jPanel1,"jPanel1");
         imageBuffer = new ImageBuffer();
         
+       
+        
     }
+    
+    private BufferedImage copyImage(BufferedImage source) {
+        BufferedImage copy = new BufferedImage(source.getWidth(), source.getHeight(), source.getType());
+        Graphics g = copy.getGraphics();
+        g.drawImage(source, 0, 0, null);
+        g.dispose();
+        return copy;
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -176,9 +189,9 @@ public class dpiGUI extends javax.swing.JFrame {
             ConvertToGrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ConvertToGrayLayout.createSequentialGroup()
                 .addGap(51, 51, 51)
-                .addGroup(ConvertToGrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                .addGroup(ConvertToGrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1))
                 .addGroup(ConvertToGrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ConvertToGrayLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -250,9 +263,12 @@ public class dpiGUI extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         
+        imagePanel.clearImage();
+        originalImage = null;
+        imageBuffer.clear();
+        
         CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
         cardLayout.show(mainPanel,"jPanel1");
-        
         
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagens", "jpg","png");
         
@@ -260,16 +276,17 @@ public class dpiGUI extends javax.swing.JFrame {
         
         JFCimage.setFileSelectionMode(JFileChooser.FILES_ONLY);
         JFCimage.setAcceptAllFileFilterUsed(false);
-        JFCimage.addChoosableFileFilter(filter);
+        JFCimage.addChoosableFileFilter(filter);    
 
         if(JFCimage.showOpenDialog(this) == JFileChooser.APPROVE_OPTION){
             File file = JFCimage.getSelectedFile();
             
             try {
-                BufferedImage img = ImageIO.read(file);
-                imageBuffer.setImage(img);
+                originalImage = ImageIO.read(file);
                 
-                imagePanel.setImage(img);
+                imageBuffer.setImage(originalImage);
+                
+                imagePanel.setImage(originalImage);
                 imagePanel.revalidate();
                 
                 jPanel1.setLayout(new BorderLayout());
@@ -281,43 +298,52 @@ public class dpiGUI extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(dpiGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            
         }
-               
-
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
         CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
         cardLayout.show(mainPanel,"ConvertToGray");
-            
+        
+        
+        
+        
         BufferedImage img = imageBuffer.getImage();
-        OriginalImage.setLayout(new BorderLayout());
-        OriginalImage.add(imagePanel, BorderLayout.CENTER);
-        OriginalImage.revalidate();
-        OriginalImage.repaint();
-        imagePanel.setImage(img);
-        
-        
-        
-        
-        
+        if(img != null){
+            ImagePanel OriginalPanel = new ImagePanel();
+            
+            OriginalImage.removeAll();
+            OriginalPanel.setImage(img);
+            OriginalImage.setLayout(new BorderLayout());
+            OriginalImage.add(OriginalPanel, BorderLayout.CENTER);
+            OriginalImage.revalidate();
+            OriginalImage.repaint();
+        }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jButtonConverterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConverterActionPerformed
         // TODO add your handling code here:
+        
+        
         BufferedImage img = imageBuffer.getImage();
-        ColorToGray RGBtoGray = new ColorToGray();
-        RGBtoGray.toGray(img);
-        GrayImage.setLayout(new BorderLayout());
-        GrayImage.add(imagePanel, BorderLayout.CENTER);
-        GrayImage.revalidate();
-        GrayImage.repaint();
-        imagePanel.setImage(img);
         
         
+        if(img != null){
+            
+            BufferedImage copyImage = copyImage(originalImage);
+            ColorToGray RGBtoGray = new ColorToGray();
+            
+            BufferedImage grayImage = RGBtoGray.toGray(copyImage);
+            
+            ImagePanel grayImagePanel = new ImagePanel();
+            grayImagePanel.setImage(grayImage);
+            GrayImage.removeAll();
+            GrayImage.setLayout(new BorderLayout());
+            GrayImage.add(grayImagePanel, BorderLayout.CENTER);
+            GrayImage.revalidate();
+            GrayImage.repaint();
+        }
     }//GEN-LAST:event_jButtonConverterActionPerformed
 
     /**

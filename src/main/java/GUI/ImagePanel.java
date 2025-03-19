@@ -61,4 +61,25 @@ public class ImagePanel extends JPanel {
             g.drawImage(image, 0, 0, WIDTH, HEIGHT, this);
         }
     }
+    
+    
+    public void clearImage() {
+        this.image = null;
+        repaint();
+    }
+    
+    
+        public BufferedImage copyImage(BufferedImage img){
+        
+        BufferedImage copy = new BufferedImage(img.getWidth(),img.getHeight(),img.getType());
+        Graphics g = copy.getGraphics();
+        g.drawImage(img,0,0,null);
+        g.dispose();
+        
+        return copy;
+    }
+
+    
+    
+    
 }

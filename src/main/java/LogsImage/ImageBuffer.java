@@ -21,7 +21,9 @@ public class ImageBuffer {
         this.image = image;
     }
     
-    
+    public void clear(){
+        this.image = null;
+    }
     
     
 }

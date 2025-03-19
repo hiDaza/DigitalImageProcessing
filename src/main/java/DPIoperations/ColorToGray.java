@@ -4,6 +4,7 @@
  */
 package DPIoperations;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 /**
@@ -11,14 +12,18 @@ import java.awt.image.BufferedImage;
  * @author Daza_
  */
 public class ColorToGray {
-       BufferedImage img; 
+      
        
        
        
-       public void toGray(BufferedImage img){
-           for(int x = 0; x < img.getWidth(); x++){
-               for(int y = 0; y < img.getHeight(); y++ ){
-                   int rgb = img.getRGB(x, y);
+       public BufferedImage toGray(BufferedImage img){
+           BufferedImage grayImage = new BufferedImage(img.getWidth(),img.getHeight(),img.getType());
+           Graphics grp = grayImage.getGraphics();
+           grp.drawImage(img, 0, 0, null);
+           grp.dispose();
+           for(int x = 0; x < grayImage.getWidth(); x++){
+               for(int y = 0; y < grayImage.getHeight(); y++ ){
+                   int rgb = grayImage.getRGB(x, y);
                    int r = (rgb >> 16) & 0xFF;
                    int g = (rgb >> 8) & 0xFF;
                    int b = rgb & 0xFF;
@@ -26,9 +31,10 @@ public class ColorToGray {
                    
                   int gray = (int) ((int) (0.299 * r) + (int) (0.587 * g) + (int) (0.114 * b)); 
                   int grayPixel = (gray << 16) | (gray << 8) | gray;
-                  img.setRGB(x, y, grayPixel);   
+                  grayImage.setRGB(x, y, grayPixel);   
                }
                
            }
+           return grayImage;
        }
 }
