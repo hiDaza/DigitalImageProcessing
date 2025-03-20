@@ -5,6 +5,7 @@
 package GUI;
 
 import DPIoperations.ColorToGray;
+import DPIoperations.GrayToInversal;
 import LogsImage.ImageBuffer;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -78,11 +79,13 @@ public class dpiGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButtonConverter = new javax.swing.JButton();
+        getImageButton = new javax.swing.JButton();
         inversalPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         originalGrayPanel = new javax.swing.JPanel();
         inversalGrayPanel = new javax.swing.JPanel();
+        inversalButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
@@ -171,6 +174,13 @@ public class dpiGUI extends javax.swing.JFrame {
             }
         });
 
+        getImageButton.setText("Obter Imagem");
+        getImageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getImageButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ConvertToGrayLayout = new javax.swing.GroupLayout(ConvertToGray);
         ConvertToGray.setLayout(ConvertToGrayLayout);
         ConvertToGrayLayout.setHorizontalGroup(
@@ -185,8 +195,13 @@ public class dpiGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ConvertToGrayLayout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jButtonConverter, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(ConvertToGrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ConvertToGrayLayout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(jButtonConverter, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(ConvertToGrayLayout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(getImageButton)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(GrayImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(65, 65, 65))
@@ -207,7 +222,9 @@ public class dpiGUI extends javax.swing.JFrame {
                         .addComponent(GrayImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ConvertToGrayLayout.createSequentialGroup()
                         .addGap(156, 156, 156)
-                        .addComponent(jButtonConverter)))
+                        .addComponent(jButtonConverter)
+                        .addGap(41, 41, 41)
+                        .addComponent(getImageButton)))
                 .addContainerGap(82, Short.MAX_VALUE))
         );
 
@@ -239,6 +256,13 @@ public class dpiGUI extends javax.swing.JFrame {
             .addGap(0, 213, Short.MAX_VALUE)
         );
 
+        inversalButton.setText("Inverter");
+        inversalButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inversalButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout inversalPanelLayout = new javax.swing.GroupLayout(inversalPanel);
         inversalPanel.setLayout(inversalPanelLayout);
         inversalPanelLayout.setHorizontalGroup(
@@ -248,7 +272,9 @@ public class dpiGUI extends javax.swing.JFrame {
                 .addGroup(inversalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
                     .addComponent(originalGrayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(160, 160, 160)
+                .addGap(18, 18, 18)
+                .addComponent(inversalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(inversalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inversalGrayPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -261,11 +287,17 @@ public class dpiGUI extends javax.swing.JFrame {
                 .addGroup(inversalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
-                .addGap(36, 36, 36)
-                .addGroup(inversalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(inversalGrayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(originalGrayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addGroup(inversalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(inversalPanelLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(inversalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(inversalGrayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(originalGrayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(149, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inversalPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(inversalButton)
+                        .addGap(213, 213, 213))))
         );
 
         getContentPane().add(inversalPanel, "card5");
@@ -414,27 +446,63 @@ public class dpiGUI extends javax.swing.JFrame {
         CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
         cardLayout.show(mainPanel,"inversalPanel");
         
-        BufferedImage img = imageBuffer.getImage();
+     
 
-        if(img != null){
-            
-            BufferedImage copyImage = copyImage(originalImage);
-            ColorToGray RGBtoGray = new ColorToGray();
-            
-            BufferedImage grayImage = RGBtoGray.toGray(copyImage);
+       
             
             ImagePanel grayOriginalPanel = new ImagePanel();
-            grayOriginalPanel.setImage(grayImage);
+            grayOriginalPanel.setImage(originalImage);
             originalGrayPanel.removeAll();
             originalGrayPanel.setLayout(new BorderLayout());
             originalGrayPanel.add(grayOriginalPanel, BorderLayout.CENTER);
             originalGrayPanel.revalidate();
             originalGrayPanel.repaint();
-        }
+        
         
         
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void getImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getImageButtonActionPerformed
+        // TODO add your handling code here:
+         
+        
+       ColorToGray RGBtoGray = new ColorToGray();
+       RGBtoGray.toGrayEver(originalImage);
+       OriginalImage.removeAll();
+       ImagePanel OriginalPanel = new ImagePanel();
+       OriginalPanel.setImage(originalImage);
+       OriginalImage.setLayout(new BorderLayout());
+       OriginalImage.add(OriginalPanel, BorderLayout.CENTER);
+       OriginalImage.revalidate();
+       OriginalImage.repaint();
+        
+    }//GEN-LAST:event_getImageButtonActionPerformed
+
+    private void inversalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inversalButtonActionPerformed
+        // TODO add your handling code here:
+        
+        BufferedImage img = imageBuffer.getImage();
+        
+        
+        if(img != null){
+            
+            BufferedImage copyImage = copyImage(originalImage);
+            GrayToInversal GrayToInversal = new GrayToInversal();
+            
+            BufferedImage inversalGray = GrayToInversal.toInversal(copyImage);
+            
+            ImagePanel inversalPanel = new ImagePanel();
+            inversalPanel.setImage(inversalGray);
+            inversalGrayPanel.removeAll();
+            inversalGrayPanel.setLayout(new BorderLayout());
+            inversalGrayPanel.add(inversalPanel, BorderLayout.CENTER);
+            inversalGrayPanel.revalidate();
+            inversalGrayPanel.repaint();
+        }
+        
+        
+    }//GEN-LAST:event_inversalButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -475,6 +543,8 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JPanel ConvertToGray;
     private javax.swing.JPanel GrayImage;
     private javax.swing.JPanel OriginalImage;
+    private javax.swing.JButton getImageButton;
+    private javax.swing.JButton inversalButton;
     private javax.swing.JPanel inversalGrayPanel;
     private javax.swing.JPanel inversalPanel;
     private javax.swing.JButton jButtonConverter;
