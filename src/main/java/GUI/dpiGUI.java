@@ -6,6 +6,7 @@ package GUI;
 
 import DPIoperations.ColorToGray;
 import DPIoperations.GrayToInversal;
+import DPIoperations.SeparateRGB;
 import LogsImage.ImageBuffer;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -46,6 +47,7 @@ public class dpiGUI extends javax.swing.JFrame {
         mainPanel.add(ConvertToGray,"ConvertToGray");
         mainPanel.add(inversalPanel,"inversalPanel");
         mainPanel.add(jPanel1,"jPanel1");
+        mainPanel.add(originaltoRGBPanel,"OriginalToRGB");
         imageBuffer = new ImageBuffer();
         
        
@@ -86,6 +88,16 @@ public class dpiGUI extends javax.swing.JFrame {
         originalGrayPanel = new javax.swing.JPanel();
         inversalGrayPanel = new javax.swing.JPanel();
         inversalButton = new javax.swing.JButton();
+        getInversalButton = new javax.swing.JButton();
+        originaltoRGBPanel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        OriginalColorsPanel = new javax.swing.JPanel();
+        RcolorPanel = new javax.swing.JPanel();
+        GcolorPanel = new javax.swing.JPanel();
+        BcolorPanel = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
@@ -94,6 +106,7 @@ public class dpiGUI extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1360, 720));
@@ -108,7 +121,7 @@ public class dpiGUI extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(776, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,7 +135,7 @@ public class dpiGUI extends javax.swing.JFrame {
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 839, Short.MAX_VALUE)
+            .addGap(0, 1539, Short.MAX_VALUE)
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addContainerGap()
@@ -192,7 +205,7 @@ public class dpiGUI extends javax.swing.JFrame {
                     .addComponent(OriginalImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(ConvertToGrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(ConvertToGrayLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 933, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ConvertToGrayLayout.createSequentialGroup()
                         .addGroup(ConvertToGrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,6 +276,13 @@ public class dpiGUI extends javax.swing.JFrame {
             }
         });
 
+        getInversalButton.setText("Obter a Imagem");
+        getInversalButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getInversalButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout inversalPanelLayout = new javax.swing.GroupLayout(inversalPanel);
         inversalPanel.setLayout(inversalPanelLayout);
         inversalPanelLayout.setHorizontalGroup(
@@ -273,12 +293,14 @@ public class dpiGUI extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
                     .addComponent(originalGrayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(inversalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(inversalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(inversalButton, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(getInversalButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(23, 23, 23)
                 .addGroup(inversalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inversalGrayPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(818, Short.MAX_VALUE))
         );
         inversalPanelLayout.setVerticalGroup(
             inversalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,16 +319,131 @@ public class dpiGUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inversalPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(inversalButton)
-                        .addGap(213, 213, 213))))
+                        .addGap(18, 18, 18)
+                        .addComponent(getInversalButton)
+                        .addGap(172, 172, 172))))
         );
 
         getContentPane().add(inversalPanel, "card5");
+
+        jButton1.setText("Separar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout OriginalColorsPanelLayout = new javax.swing.GroupLayout(OriginalColorsPanel);
+        OriginalColorsPanel.setLayout(OriginalColorsPanelLayout);
+        OriginalColorsPanelLayout.setHorizontalGroup(
+            OriginalColorsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 250, Short.MAX_VALUE)
+        );
+        OriginalColorsPanelLayout.setVerticalGroup(
+            OriginalColorsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 250, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout RcolorPanelLayout = new javax.swing.GroupLayout(RcolorPanel);
+        RcolorPanel.setLayout(RcolorPanelLayout);
+        RcolorPanelLayout.setHorizontalGroup(
+            RcolorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 250, Short.MAX_VALUE)
+        );
+        RcolorPanelLayout.setVerticalGroup(
+            RcolorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 251, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout GcolorPanelLayout = new javax.swing.GroupLayout(GcolorPanel);
+        GcolorPanel.setLayout(GcolorPanelLayout);
+        GcolorPanelLayout.setHorizontalGroup(
+            GcolorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 249, Short.MAX_VALUE)
+        );
+        GcolorPanelLayout.setVerticalGroup(
+            GcolorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout BcolorPanelLayout = new javax.swing.GroupLayout(BcolorPanel);
+        BcolorPanel.setLayout(BcolorPanelLayout);
+        BcolorPanelLayout.setHorizontalGroup(
+            BcolorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 249, Short.MAX_VALUE)
+        );
+        BcolorPanelLayout.setVerticalGroup(
+            BcolorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLabel6.setText("CANAL R");
+
+        jLabel7.setText("CANAL G");
+
+        jLabel8.setText("CANAL B");
+
+        javax.swing.GroupLayout originaltoRGBPanelLayout = new javax.swing.GroupLayout(originaltoRGBPanel);
+        originaltoRGBPanel.setLayout(originaltoRGBPanelLayout);
+        originaltoRGBPanelLayout.setHorizontalGroup(
+            originaltoRGBPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(originaltoRGBPanelLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(originaltoRGBPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(originaltoRGBPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(68, 68, 68))
+                    .addGroup(originaltoRGBPanelLayout.createSequentialGroup()
+                        .addComponent(OriginalColorsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)
+                        .addGap(34, 34, 34)
+                        .addComponent(RcolorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(originaltoRGBPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, originaltoRGBPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(GcolorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BcolorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, originaltoRGBPanelLayout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(jLabel7)
+                        .addGap(135, 135, 135)
+                        .addComponent(jLabel8)))
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
+        originaltoRGBPanelLayout.setVerticalGroup(
+            originaltoRGBPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, originaltoRGBPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(originaltoRGBPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel6))
+                .addGroup(originaltoRGBPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(originaltoRGBPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(originaltoRGBPanelLayout.createSequentialGroup()
+                            .addGap(18, 18, 18)
+                            .addGroup(originaltoRGBPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(OriginalColorsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(GcolorPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BcolorPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, originaltoRGBPanelLayout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(RcolorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(originaltoRGBPanelLayout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(jButton1)))
+                .addContainerGap(122, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(originaltoRGBPanel, "card6");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 839, Short.MAX_VALUE)
+            .addGap(0, 1539, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -348,6 +485,14 @@ public class dpiGUI extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem3);
 
+        jMenuItem4.setText("Separar os Canais ");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem4);
+
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -364,6 +509,9 @@ public class dpiGUI extends javax.swing.JFrame {
         
         CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
         cardLayout.show(mainPanel,"jPanel1");
+        
+        
+        
         
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagens", "jpg","png");
         
@@ -394,6 +542,8 @@ public class dpiGUI extends javax.swing.JFrame {
                 Logger.getLogger(dpiGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
+        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -488,9 +638,9 @@ public class dpiGUI extends javax.swing.JFrame {
         if(img != null){
             
             BufferedImage copyImage = copyImage(originalImage);
-            GrayToInversal GrayToInversal = new GrayToInversal();
+            GrayToInversal graytoInversal = new GrayToInversal();
             
-            BufferedImage inversalGray = GrayToInversal.toInversal(copyImage);
+            BufferedImage inversalGray = graytoInversal.toInversal(copyImage);
             
             ImagePanel inversalPanel = new ImagePanel();
             inversalPanel.setImage(inversalGray);
@@ -503,6 +653,75 @@ public class dpiGUI extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_inversalButtonActionPerformed
+
+    private void getInversalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getInversalButtonActionPerformed
+        // TODO add your handling code here:
+        
+       GrayToInversal graytoInversal = new GrayToInversal();
+       graytoInversal.toInversalEver(originalImage);
+       
+       ImagePanel inversalPanel = new ImagePanel();
+       
+       inversalPanel.setImage(originalImage);
+       originalGrayPanel.removeAll();
+       originalGrayPanel.setLayout(new BorderLayout());
+       originalGrayPanel.add(inversalPanel, BorderLayout.CENTER);
+       originalGrayPanel.revalidate();
+       originalGrayPanel.repaint();
+       
+    }//GEN-LAST:event_getInversalButtonActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        
+        CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
+        cardLayout.show(mainPanel,"OriginalToRGB");
+        
+        
+            ImagePanel originalPanelRGB = new ImagePanel();
+            originalPanelRGB.setImage(originalImage);
+            //originaltoRGBPanel.removeAll();
+            OriginalColorsPanel.setLayout(new BorderLayout());
+            OriginalColorsPanel.add(originalPanelRGB, BorderLayout.CENTER);
+            OriginalColorsPanel.revalidate();
+            OriginalColorsPanel.repaint();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        SeparateRGB sprRGB = new SeparateRGB();
+        BufferedImage redImage = sprRGB.separateColor(originalImage, 1);
+        
+        ImagePanel rPanel = new ImagePanel();
+        rPanel.setImage(redImage);
+        RcolorPanel.removeAll();
+        RcolorPanel.setLayout(new BorderLayout());
+        RcolorPanel.add(rPanel, BorderLayout.CENTER);
+        RcolorPanel.revalidate();
+        RcolorPanel.repaint();
+        
+        BufferedImage greenImage = sprRGB.separateColor(originalImage, 2);
+        
+        ImagePanel gPanel = new ImagePanel();
+        gPanel.setImage(greenImage);
+        GcolorPanel.removeAll();
+        GcolorPanel.setLayout(new BorderLayout());
+        GcolorPanel.add(gPanel, BorderLayout.CENTER);
+        GcolorPanel.revalidate();
+        GcolorPanel.repaint();
+        
+        BufferedImage blueImage = sprRGB.separateColor(originalImage, 3);
+        
+        ImagePanel bPanel = new ImagePanel();
+        bPanel.setImage(blueImage);
+        BcolorPanel.removeAll();
+        BcolorPanel.setLayout(new BorderLayout());
+        BcolorPanel.add(bPanel, BorderLayout.CENTER);
+        BcolorPanel.revalidate();
+        BcolorPanel.repaint();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -540,19 +759,28 @@ public class dpiGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel BcolorPanel;
     private javax.swing.JPanel ConvertToGray;
+    private javax.swing.JPanel GcolorPanel;
     private javax.swing.JPanel GrayImage;
+    private javax.swing.JPanel OriginalColorsPanel;
     private javax.swing.JPanel OriginalImage;
+    private javax.swing.JPanel RcolorPanel;
     private javax.swing.JButton getImageButton;
+    private javax.swing.JButton getInversalButton;
     private javax.swing.JButton inversalButton;
     private javax.swing.JPanel inversalGrayPanel;
     private javax.swing.JPanel inversalPanel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonConverter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -560,9 +788,11 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel originalGrayPanel;
+    private javax.swing.JPanel originaltoRGBPanel;
     // End of variables declaration//GEN-END:variables
 }

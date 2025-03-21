@@ -7,7 +7,11 @@ GUI\dpiGUI$2.class
 GUI\dpiGUI$6.class
 GUI\dpiGUI$4.class
 GUI\ImagePanel.class
+DPIoperations\SeparateRGB.class
 GUI\dpiGUI$5.class
 com\mycompany\digitalprocessingimage\DigitalProcessingImage.class
+GUI\dpiGUI$10.class
 GUI\dpiGUI$3.class
+GUI\dpiGUI$9.class
+GUI\dpiGUI$8.class
 DPIoperations\ColorToGray.class
