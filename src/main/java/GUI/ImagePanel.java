@@ -9,77 +9,65 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 public class ImagePanel extends JPanel {
-    private BufferedImage image; // Armazena a imagem redimensionada
-    private static final int WIDTH = 512;  // Largura fixa
-    private static final int HEIGHT = 512; // Altura fixa
+    private BufferedImage image; // Armazena a imagem
     
-
     public ImagePanel() {
-        setPreferredSize(new Dimension(WIDTH, HEIGHT)); // Define o tamanho fixo do painel
+        // Não definimos um tamanho fixo aqui
     }
 
-    // Define a imagem e redimensiona para 600x400 sem cortes
+    // Define a imagem e ajusta o tamanho do painel
     public void setImage(BufferedImage img) {
-        this.image = resizeImage(img, WIDTH, HEIGHT);
+        this.image = img;
+        // Atualiza o tamanho preferencial do painel para o tamanho da imagem
+        setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
+        // Notifica o layout manager para revalidar o layout
+        revalidate();
         repaint(); // Redesenha o painel
     }
 
-    // Redimensiona a imagem sem cortes, apenas reduzindo
-    private BufferedImage resizeImage(BufferedImage originalImage, int width, int height) {
-        BufferedImage resizedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-        Graphics2D g = resizedImage.createGraphics();
-
-        // Ativa interpolação para melhor qualidade
-        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-        // Desenha a imagem redimensionada SEM cortes
-        g.drawImage(originalImage, 0, 0, width, height, null);
-        g.dispose();
-
-        return resizedImage;
-    }
-    
-    public void eraseImage(){
-        this.image = null;
-        repaint();
-    }
-
-    
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         
         // Se a imagem for null, não tenta desenhá-la
         if (image == null) {
-            // Opcional: Desenhe um fundo em branco para indicar que não há imagem
+            // Desenhe um fundo em branco para indicar que não há imagem
             g.setColor(Color.WHITE);
-            g.fillRect(0, 0, WIDTH, HEIGHT); // Limpa a tela
+            g.fillRect(0, 0, getWidth(), getHeight()); // Limpa a tela
         } else {
-            // Caso contrário, desenha a imagem
-            g.drawImage(image, 0, 0, WIDTH, HEIGHT, this);
+            // Desenha a imagem em seu tamanho original
+            g.drawImage(image, 0, 0, this);
         }
     }
     
-    
-    public void clearImage() {
+    public void eraseImage() {
         this.image = null;
+        // Volta ao tamanho padrão quando não há imagem
+        setPreferredSize(new Dimension(0, 0));
+        revalidate();
         repaint();
     }
     
+    public void clearImage() {
+        this.eraseImage(); // Podemos usar eraseImage() aqui
+    }
     
-        public BufferedImage copyImage(BufferedImage img){
+    public BufferedImage copyImage(BufferedImage img) {
+        if (img == null) return null;
         
-        BufferedImage copy = new BufferedImage(img.getWidth(),img.getHeight(),img.getType());
+        BufferedImage copy = new BufferedImage(
+            img.getWidth(),
+            img.getHeight(),
+            img.getType());
         Graphics g = copy.getGraphics();
-        g.drawImage(img,0,0,null);
+        g.drawImage(img, 0, 0, null);
         g.dispose();
         
         return copy;
     }
-
     
-    
-    
+    // Método para obter a imagem atual (pode ser útil)
+    public BufferedImage getImage() {
+        return this.image;
+    }
 }

@@ -1,5 +1,6 @@
 GUI\dpiGUI$1.class
 DPIoperations\GrayToInversal.class
+DPIoperations\RandomPositions.class
 GUI\dpiGUI$7.class
 LogsImage\ImageBuffer.class
 GUI\dpiGUI.class
@@ -8,9 +9,12 @@ GUI\dpiGUI$6.class
 GUI\dpiGUI$4.class
 GUI\ImagePanel.class
 DPIoperations\SeparateRGB.class
+GUI\dpiGUI$11.class
+GUI\dpiGUI$12.class
 GUI\dpiGUI$5.class
 com\mycompany\digitalprocessingimage\DigitalProcessingImage.class
 GUI\dpiGUI$10.class
+GUI\dpiGUI$13.class
 GUI\dpiGUI$3.class
 GUI\dpiGUI$9.class
 GUI\dpiGUI$8.class

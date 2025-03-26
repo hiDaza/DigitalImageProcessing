@@ -22,24 +22,24 @@ public class SeparateRGB {
         
         for(int x = 0; x < img.getWidth(); x++){
             for(int y = 0; y < img.getHeight(); y++ ){
-               int rgb = separateChannelRGB.getRGB(x, y);
+                
+               int rgb = img.getRGB(x, y);
+               
+               int r = (rgb >> 16) & 0xFF;
+               int g = (rgb >> 8) & 0xFF;
+               int b = rgb & 0xFF;
+               
                if(choose == 1){
-                   int r = (rgb << 16) & 0xFF;
-                   separateChannelRGB.setRGB(x, y, r);
+                   separateChannelRGB.setRGB(x, y, (r << 16) | (0 << 8) | 0);
                }
                 if(choose == 2){
-                    int g = (rgb << 8) & 0xFF;
-                    separateChannelRGB.setRGB(x, y, g);
+                    separateChannelRGB.setRGB(x, y, (0 << 16) | (g << 8) | 0);
                }
                 if(choose == 3){
-                    int b = rgb & 0xFF;
-                    separateChannelRGB.setRGB(x, y, b);
+                    separateChannelRGB.setRGB(x, y, (0 << 16) | (0 << 8) | b);
                 }
             }
         }
         return separateChannelRGB;
     }
-    
-    
-    
 }
