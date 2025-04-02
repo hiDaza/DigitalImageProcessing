@@ -86,6 +86,21 @@ public class dpiGUI extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        picPixelsPanel = new javax.swing.JPanel();
+        pixelsImagePanel = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        RGBTextField = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        RvalueTextField = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        GvalueTextField = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        BvalueTextField = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        XTextField = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        YTextField = new javax.swing.JTextField();
         ConvertToGray = new javax.swing.JPanel();
         OriginalImage = new javax.swing.JPanel();
         GrayImage = new javax.swing.JPanel();
@@ -109,8 +124,6 @@ public class dpiGUI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        picPixelsPanel = new javax.swing.JPanel();
-        pixelsImagePanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
@@ -149,24 +162,133 @@ public class dpiGUI extends javax.swing.JFrame {
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1539, Short.MAX_VALUE)
-            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(mainPanelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 568, Short.MAX_VALUE)
-            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         getContentPane().add(mainPanel, "card2");
+
+        pixelsImagePanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                pixelsImagePanelMouseDragged(evt);
+            }
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                pixelsImagePanelMouseMoved(evt);
+            }
+        });
+        pixelsImagePanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pixelsImagePanelMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pixelsImagePanelLayout = new javax.swing.GroupLayout(pixelsImagePanel);
+        pixelsImagePanel.setLayout(pixelsImagePanelLayout);
+        pixelsImagePanelLayout.setHorizontalGroup(
+            pixelsImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 287, Short.MAX_VALUE)
+        );
+        pixelsImagePanelLayout.setVerticalGroup(
+            pixelsImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 288, Short.MAX_VALUE)
+        );
+
+        jLabel9.setText("Valor RGB");
+
+        jLabel10.setText("Valor de R");
+
+        jLabel11.setText("Valor de G");
+
+        jLabel12.setText("Valor de B");
+
+        jLabel13.setText("Coordenadas");
+
+        jLabel14.setText("X: ");
+
+        jLabel15.setText("Y: ");
+
+        javax.swing.GroupLayout picPixelsPanelLayout = new javax.swing.GroupLayout(picPixelsPanel);
+        picPixelsPanel.setLayout(picPixelsPanelLayout);
+        picPixelsPanelLayout.setHorizontalGroup(
+            picPixelsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(picPixelsPanelLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(pixelsImagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(78, 78, 78)
+                .addGroup(picPixelsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addGroup(picPixelsPanelLayout.createSequentialGroup()
+                        .addGroup(picPixelsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(picPixelsPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(XTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel15))
+                            .addGroup(picPixelsPanelLayout.createSequentialGroup()
+                                .addGroup(picPixelsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(RGBTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(picPixelsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(RvalueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(picPixelsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(picPixelsPanelLayout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addGroup(picPixelsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addComponent(GvalueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(picPixelsPanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(YTextField)))
+                        .addGap(18, 18, 18)
+                        .addGroup(picPixelsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(BvalueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(775, Short.MAX_VALUE))
+        );
+        picPixelsPanelLayout.setVerticalGroup(
+            picPixelsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(picPixelsPanelLayout.createSequentialGroup()
+                .addGroup(picPixelsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(picPixelsPanelLayout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(pixelsImagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(picPixelsPanelLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addGroup(picPixelsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(picPixelsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(RGBTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(RvalueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(GvalueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BvalueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel13)
+                        .addGap(18, 18, 18)
+                        .addGroup(picPixelsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(XTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15)
+                            .addComponent(YTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(237, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(picPixelsPanel, "card7");
 
         javax.swing.GroupLayout OriginalImageLayout = new javax.swing.GroupLayout(OriginalImage);
         OriginalImage.setLayout(OriginalImageLayout);
@@ -416,12 +538,9 @@ public class dpiGUI extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(originaltoRGBPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(originaltoRGBPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, originaltoRGBPanelLayout.createSequentialGroup()
-                        .addComponent(GcolorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(648, Short.MAX_VALUE))))
+                    .addComponent(jLabel7)
+                    .addComponent(GcolorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         originaltoRGBPanelLayout.setVerticalGroup(
             originaltoRGBPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -455,50 +574,6 @@ public class dpiGUI extends javax.swing.JFrame {
         );
 
         getContentPane().add(originaltoRGBPanel, "card6");
-
-        pixelsImagePanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                pixelsImagePanelMouseDragged(evt);
-            }
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                pixelsImagePanelMouseMoved(evt);
-            }
-        });
-        pixelsImagePanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pixelsImagePanelMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pixelsImagePanelLayout = new javax.swing.GroupLayout(pixelsImagePanel);
-        pixelsImagePanel.setLayout(pixelsImagePanelLayout);
-        pixelsImagePanelLayout.setHorizontalGroup(
-            pixelsImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 287, Short.MAX_VALUE)
-        );
-        pixelsImagePanelLayout.setVerticalGroup(
-            pixelsImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 288, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout picPixelsPanelLayout = new javax.swing.GroupLayout(picPixelsPanel);
-        picPixelsPanel.setLayout(picPixelsPanelLayout);
-        picPixelsPanelLayout.setHorizontalGroup(
-            picPixelsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(picPixelsPanelLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(pixelsImagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1229, Short.MAX_VALUE))
-        );
-        picPixelsPanelLayout.setVerticalGroup(
-            picPixelsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(picPixelsPanelLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(pixelsImagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(237, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(picPixelsPanel, "card7");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -840,7 +915,8 @@ public class dpiGUI extends javax.swing.JFrame {
         
         int x = evt.getX();
         int y = evt.getY();
-        
+        String strX = Integer.toString(x);
+        String strY = Integer.toString(y);
        
         
         for(int i = 0; i < size; i++){
@@ -850,8 +926,17 @@ public class dpiGUI extends javax.swing.JFrame {
                 int r = (rgb >> 16) & 0xFF;
                 int g = (rgb >> 8) & 0xFF;
                 int b = rgb & 0xFF;
-                System.out.println("Valor do RGB: " + rgb + " Valor de R: " + r + " Valor de G: " + g + " Valor de B: " + b + "\n"
-                        + " Coordenda x: "+ x + " Coordenada y: " + y);
+                String strRGB = Integer.toString(rgb);
+                String strR = Integer.toString(r);
+                String strG = Integer.toString(g);
+                String strB = Integer.toString(b);
+                RGBTextField.setText(strRGB);
+                RvalueTextField.setText(strR);
+                GvalueTextField.setText(strG);
+                BvalueTextField.setText(strB);
+                XTextField.setText(strX);
+                YTextField.setText(strY);
+                
             }
         }
     }//GEN-LAST:event_pixelsImagePanelMouseMoved
@@ -893,12 +978,18 @@ public class dpiGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BcolorPanel;
+    private javax.swing.JTextField BvalueTextField;
     private javax.swing.JPanel ConvertToGray;
     private javax.swing.JPanel GcolorPanel;
     private javax.swing.JPanel GrayImage;
+    private javax.swing.JTextField GvalueTextField;
     private javax.swing.JPanel OriginalColorsPanel;
     private javax.swing.JPanel OriginalImage;
+    private javax.swing.JTextField RGBTextField;
     private javax.swing.JPanel RcolorPanel;
+    private javax.swing.JTextField RvalueTextField;
+    private javax.swing.JTextField XTextField;
+    private javax.swing.JTextField YTextField;
     private javax.swing.JButton getImageButton;
     private javax.swing.JButton getInversalButton;
     private javax.swing.JButton inversalButton;
@@ -907,6 +998,12 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonConverter;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -914,6 +1011,7 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
