@@ -59,6 +59,7 @@ public class dpiGUI extends javax.swing.JFrame {
         mainPanel.add(jPanel1,"jPanel1");
         mainPanel.add(originaltoRGBPanel,"OriginalToRGB");
         mainPanel.add(picPixelsPanel,"picPixels");
+        mainPanel.add(TenNoisesPanel,"TenNoises");
         imageBuffer = new ImageBuffer();
         
        
@@ -125,6 +126,18 @@ public class dpiGUI extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        TenNoisesPanel = new javax.swing.JPanel();
+        originalPanel = new javax.swing.JPanel();
+        firstPanel = new javax.swing.JPanel();
+        secondPanel = new javax.swing.JPanel();
+        thirdPanel = new javax.swing.JPanel();
+        fourthPanel = new javax.swing.JPanel();
+        fifithPanel = new javax.swing.JPanel();
+        sixthPanel = new javax.swing.JPanel();
+        seventhPanel = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        eightPanel = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
@@ -134,6 +147,7 @@ public class dpiGUI extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1360, 720));
@@ -588,6 +602,173 @@ public class dpiGUI extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, "card3");
 
+        javax.swing.GroupLayout originalPanelLayout = new javax.swing.GroupLayout(originalPanel);
+        originalPanel.setLayout(originalPanelLayout);
+        originalPanelLayout.setHorizontalGroup(
+            originalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+        originalPanelLayout.setVerticalGroup(
+            originalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout firstPanelLayout = new javax.swing.GroupLayout(firstPanel);
+        firstPanel.setLayout(firstPanelLayout);
+        firstPanelLayout.setHorizontalGroup(
+            firstPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+        firstPanelLayout.setVerticalGroup(
+            firstPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout secondPanelLayout = new javax.swing.GroupLayout(secondPanel);
+        secondPanel.setLayout(secondPanelLayout);
+        secondPanelLayout.setHorizontalGroup(
+            secondPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+        secondPanelLayout.setVerticalGroup(
+            secondPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout thirdPanelLayout = new javax.swing.GroupLayout(thirdPanel);
+        thirdPanel.setLayout(thirdPanelLayout);
+        thirdPanelLayout.setHorizontalGroup(
+            thirdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+        thirdPanelLayout.setVerticalGroup(
+            thirdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout fourthPanelLayout = new javax.swing.GroupLayout(fourthPanel);
+        fourthPanel.setLayout(fourthPanelLayout);
+        fourthPanelLayout.setHorizontalGroup(
+            fourthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+        fourthPanelLayout.setVerticalGroup(
+            fourthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout fifithPanelLayout = new javax.swing.GroupLayout(fifithPanel);
+        fifithPanel.setLayout(fifithPanelLayout);
+        fifithPanelLayout.setHorizontalGroup(
+            fifithPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+        fifithPanelLayout.setVerticalGroup(
+            fifithPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout sixthPanelLayout = new javax.swing.GroupLayout(sixthPanel);
+        sixthPanel.setLayout(sixthPanelLayout);
+        sixthPanelLayout.setHorizontalGroup(
+            sixthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+        sixthPanelLayout.setVerticalGroup(
+            sixthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout seventhPanelLayout = new javax.swing.GroupLayout(seventhPanel);
+        seventhPanel.setLayout(seventhPanelLayout);
+        seventhPanelLayout.setHorizontalGroup(
+            seventhPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 201, Short.MAX_VALUE)
+        );
+        seventhPanelLayout.setVerticalGroup(
+            seventhPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jButton2.setText("Gerar Imagens");
+
+        jButton3.setText("Aplicar Filtro");
+
+        javax.swing.GroupLayout eightPanelLayout = new javax.swing.GroupLayout(eightPanel);
+        eightPanel.setLayout(eightPanelLayout);
+        eightPanelLayout.setHorizontalGroup(
+            eightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+        eightPanelLayout.setVerticalGroup(
+            eightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout TenNoisesPanelLayout = new javax.swing.GroupLayout(TenNoisesPanel);
+        TenNoisesPanel.setLayout(TenNoisesPanelLayout);
+        TenNoisesPanelLayout.setHorizontalGroup(
+            TenNoisesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TenNoisesPanelLayout.createSequentialGroup()
+                .addGroup(TenNoisesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TenNoisesPanelLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(fifithPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(TenNoisesPanelLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(originalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(TenNoisesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TenNoisesPanelLayout.createSequentialGroup()
+                        .addGroup(TenNoisesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(secondPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(thirdPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(fourthPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(TenNoisesPanelLayout.createSequentialGroup()
+                        .addComponent(sixthPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(firstPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(seventhPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(eightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 427, Short.MAX_VALUE))))
+        );
+        TenNoisesPanelLayout.setVerticalGroup(
+            TenNoisesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TenNoisesPanelLayout.createSequentialGroup()
+                .addGroup(TenNoisesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TenNoisesPanelLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(TenNoisesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(thirdPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fourthPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(TenNoisesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(originalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(secondPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(TenNoisesPanelLayout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3)))
+                .addGap(32, 32, 32)
+                .addGroup(TenNoisesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(fifithPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sixthPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(firstPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(seventhPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(eightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(447, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(TenNoisesPanel, "card8");
+
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
@@ -636,6 +817,14 @@ public class dpiGUI extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem5);
+
+        jMenuItem6.setText("Ruídos Randomicos");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem6);
 
         jMenuBar1.add(jMenu3);
 
@@ -896,7 +1085,6 @@ public class dpiGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         
-        
 
         
         
@@ -940,6 +1128,24 @@ public class dpiGUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_pixelsImagePanelMouseMoved
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
+        cardLayout.show(mainPanel,"TenNoises");
+        
+        
+            ImagePanel originalPanelTen = new ImagePanel();
+            originalPanelTen.setImage(originalImage);
+            //originalPanelTen.removeAll();
+            originalPanel.setLayout(new BorderLayout());
+            originalPanel.add(originalPanelTen, BorderLayout.CENTER);
+            originalPanel.revalidate();
+            originalPanel.repaint();
+        
+               
+            
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -988,14 +1194,21 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JTextField RGBTextField;
     private javax.swing.JPanel RcolorPanel;
     private javax.swing.JTextField RvalueTextField;
+    private javax.swing.JPanel TenNoisesPanel;
     private javax.swing.JTextField XTextField;
     private javax.swing.JTextField YTextField;
+    private javax.swing.JPanel eightPanel;
+    private javax.swing.JPanel fifithPanel;
+    private javax.swing.JPanel firstPanel;
+    private javax.swing.JPanel fourthPanel;
     private javax.swing.JButton getImageButton;
     private javax.swing.JButton getInversalButton;
     private javax.swing.JButton inversalButton;
     private javax.swing.JPanel inversalGrayPanel;
     private javax.swing.JPanel inversalPanel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonConverter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1021,12 +1234,18 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel originalGrayPanel;
+    private javax.swing.JPanel originalPanel;
     private javax.swing.JPanel originaltoRGBPanel;
     private javax.swing.JPanel picPixelsPanel;
     private javax.swing.JPanel pixelsImagePanel;
+    private javax.swing.JPanel secondPanel;
+    private javax.swing.JPanel seventhPanel;
+    private javax.swing.JPanel sixthPanel;
+    private javax.swing.JPanel thirdPanel;
     // End of variables declaration//GEN-END:variables
 }
