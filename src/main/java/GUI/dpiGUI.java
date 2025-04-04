@@ -6,6 +6,7 @@ package GUI;
 
 import DPIoperations.ColorToGray;
 import DPIoperations.GrayToInversal;
+import DPIoperations.RandomNoises;
 import DPIoperations.RandomPositions;
 import DPIoperations.SeparateRGB;
 import LogsImage.ImageBuffer;
@@ -691,6 +692,11 @@ public class dpiGUI extends javax.swing.JFrame {
         );
 
         jButton2.setText("Gerar Imagens");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Aplicar Filtro");
 
@@ -1137,7 +1143,7 @@ public class dpiGUI extends javax.swing.JFrame {
         
             ImagePanel originalPanelTen = new ImagePanel();
             originalPanelTen.setImage(originalImage);
-            //originalPanelTen.removeAll();
+            //originalPanelTen.removeAll(); //test
             originalPanel.setLayout(new BorderLayout());
             originalPanel.add(originalPanelTen, BorderLayout.CENTER);
             originalPanel.revalidate();
@@ -1146,6 +1152,25 @@ public class dpiGUI extends javax.swing.JFrame {
                
             
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        RandomNoises randomN = new RandomNoises();
+        
+        BufferedImage firstNoise = randomN.randomNoises(originalImage);
+        
+        
+        ImagePanel fPanel = new ImagePanel();
+        fPanel.setImage(firstNoise);
+        firstPanel.removeAll();
+        firstPanel.setLayout(new BorderLayout());
+        firstPanel.add(fPanel, BorderLayout.CENTER);
+        firstPanel.revalidate();
+        firstPanel.repaint();
+        
+        
+                
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

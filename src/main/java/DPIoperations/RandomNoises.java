@@ -7,6 +7,8 @@ package DPIoperations;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import java.util.Random;
+
 /**
  *
  * @author gerson.lucas_unesp
@@ -16,24 +18,24 @@ public class RandomNoises {
     
     public BufferedImage randomNoises(BufferedImage img){
         BufferedImage noiseImage = new BufferedImage(img.getWidth(),img.getHeight(),img.getType());
-        Graphics gpc = img.getGraphics();
-        gpc.drawImage(img, 0, 0, null);
-        gpc.dispose();
-        
+  
+
         int noiseValue = (int) ((img.getHeight() * img.getWidth()) * 0.1);
+       
+        Random random = new Random();
         
-        RandomPositions randomP = new RandomPositions();
-        int x[] = randomP.randomPointsX(img, noiseValue);
-        int y[] = randomP.randomPointsY(img, noiseValue);
-        
-        
-        for(int i = 0; i < img.getWidth(); i++){
-            for(int j = 0; j < img.getHeight(); j++){
-                if(i == x[i] && j == y[j]){
-                    noiseImage.setRGB(i, j, 0);
+        for(int i = 0; i < noiseValue; i++){
+
+                    int x = random.nextInt(img.getWidth());
+                    int y = random.nextInt(img.getHeight());
+                    
+                    int noiseColor = (255 << 16) | (255 << 8) | 255;
+                    
+                    noiseImage.setRGB(x, y, noiseColor);
+                    
+                    
+                    
                 }
-            }
-        }
         return noiseImage;
     }
 }
