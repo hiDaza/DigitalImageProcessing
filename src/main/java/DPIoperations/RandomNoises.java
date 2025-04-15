@@ -18,7 +18,9 @@ public class RandomNoises {
     
     public BufferedImage randomNoises(BufferedImage img){
         BufferedImage noiseImage = new BufferedImage(img.getWidth(),img.getHeight(),img.getType());
-  
+        Graphics gpc = noiseImage.getGraphics();
+        gpc.drawImage(img, 0, 0, null);
+        gpc.dispose();
 
         int noiseValue = (int) ((img.getHeight() * img.getWidth()) * 0.1);
        
@@ -32,9 +34,6 @@ public class RandomNoises {
                     int noiseColor = (255 << 16) | (255 << 8) | 255;
                     
                     noiseImage.setRGB(x, y, noiseColor);
-                    
-                    
-                    
                 }
         return noiseImage;
     }

@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import DPIoperations.AverageFilter;
 import DPIoperations.ColorToGray;
 import DPIoperations.GrayToInversal;
 import DPIoperations.RandomNoises;
@@ -13,13 +14,17 @@ import LogsImage.ImageBuffer;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Graphics;
+import java.awt.List;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
+import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -138,7 +143,7 @@ public class dpiGUI extends javax.swing.JFrame {
         seventhPanel = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        eightPanel = new javax.swing.JPanel();
+        eighthPanel = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
@@ -699,15 +704,20 @@ public class dpiGUI extends javax.swing.JFrame {
         });
 
         jButton3.setText("Aplicar Filtro");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout eightPanelLayout = new javax.swing.GroupLayout(eightPanel);
-        eightPanel.setLayout(eightPanelLayout);
-        eightPanelLayout.setHorizontalGroup(
-            eightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout eighthPanelLayout = new javax.swing.GroupLayout(eighthPanel);
+        eighthPanel.setLayout(eighthPanelLayout);
+        eighthPanelLayout.setHorizontalGroup(
+            eighthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 200, Short.MAX_VALUE)
         );
-        eightPanelLayout.setVerticalGroup(
-            eightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        eighthPanelLayout.setVerticalGroup(
+            eighthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -743,7 +753,7 @@ public class dpiGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(seventhPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(eightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(eighthPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 427, Short.MAX_VALUE))))
         );
         TenNoisesPanelLayout.setVerticalGroup(
@@ -769,7 +779,7 @@ public class dpiGUI extends javax.swing.JFrame {
                     .addComponent(sixthPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(firstPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(seventhPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(eightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(eighthPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(447, Short.MAX_VALUE))
         );
 
@@ -1158,19 +1168,115 @@ public class dpiGUI extends javax.swing.JFrame {
         RandomNoises randomN = new RandomNoises();
         
         BufferedImage firstNoise = randomN.randomNoises(originalImage);
-        
-        
-        ImagePanel fPanel = new ImagePanel();
-        fPanel.setImage(firstNoise);
+        ImagePanel firPanel = new ImagePanel();
+        firPanel.setImage(firstNoise);
         firstPanel.removeAll();
         firstPanel.setLayout(new BorderLayout());
-        firstPanel.add(fPanel, BorderLayout.CENTER);
+        firstPanel.add(firPanel, BorderLayout.CENTER);
         firstPanel.revalidate();
         firstPanel.repaint();
+                
+        BufferedImage secondNoise = randomN.randomNoises(originalImage);
+        ImagePanel secPanel = new ImagePanel();
+        secPanel.setImage(secondNoise);
+        secondPanel.removeAll();
+        secondPanel.setLayout(new BorderLayout());
+        secondPanel.add(secPanel, BorderLayout.CENTER);
+        secondPanel.revalidate();
+        secondPanel.repaint();        
+
+        BufferedImage thirdNoise = randomN.randomNoises(originalImage);
+        ImagePanel thiPanel = new ImagePanel();
+        thiPanel.setImage(thirdNoise);
+        thirdPanel.removeAll();
+        thirdPanel.setLayout(new BorderLayout());
+        thirdPanel.add(thiPanel, BorderLayout.CENTER);
+        thirdPanel.revalidate();
+        thirdPanel.repaint();
+        
+        BufferedImage fourthNoise = randomN.randomNoises(originalImage);
+        ImagePanel fouPanel = new ImagePanel();
+        fouPanel.setImage(fourthNoise);
+        fourthPanel.removeAll();
+        fourthPanel.setLayout(new BorderLayout());
+        fourthPanel.add(fouPanel, BorderLayout.CENTER);
+        fourthPanel.revalidate();
+        fourthPanel.repaint();
+        
+        BufferedImage fifithNoise = randomN.randomNoises(originalImage);
+        ImagePanel fifPanel = new ImagePanel();
+        fifPanel.setImage(fifithNoise);
+        fifithPanel.removeAll();
+        fourthPanel.setLayout(new BorderLayout());
+        fourthPanel.add(fifPanel, BorderLayout.CENTER);
+        fourthPanel.revalidate();
+        fourthPanel.repaint();
+        
+        BufferedImage sixthNoise = randomN.randomNoises(originalImage);
+        ImagePanel sixPanel = new ImagePanel();
+        sixPanel.setImage(sixthNoise);
+        sixthPanel.removeAll();
+        sixthPanel.setLayout(new BorderLayout());
+        sixthPanel.add(sixPanel, BorderLayout.CENTER);
+        sixthPanel.revalidate();
+        sixthPanel.repaint();
+        
+        BufferedImage seventhNoise = randomN.randomNoises(originalImage);
+        ImagePanel sevPanel = new ImagePanel();
+        sevPanel.setImage(seventhNoise);
+        seventhPanel.removeAll();
+        seventhPanel.setLayout(new BorderLayout());
+        seventhPanel.add(sevPanel, BorderLayout.CENTER);
+        seventhPanel.revalidate();
+        seventhPanel.repaint();
+        
+        BufferedImage eighthNoise = randomN.randomNoises(originalImage);
+        ImagePanel eigPanel = new ImagePanel();
+        eigPanel.setImage(eighthNoise);
+        eighthPanel.removeAll();
+        eighthPanel.setLayout(new BorderLayout());
+        eighthPanel.add(eigPanel, BorderLayout.CENTER);
+        eighthPanel.revalidate();
+        eighthPanel.repaint();
         
         
                 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        AverageFilter averageFilter = new AverageFilter();
+        ImagePanel averagePanels = new ImagePanel();
+        
+        ArrayList<JPanel> panels = new ArrayList<>();
+        panels.add(firstPanel);
+        panels.add(secondPanel);
+        panels.add(thirdPanel);
+        panels.add(fourthPanel);
+       // panels.add(fifithPanel); //have problems because the interface is SMALL
+        panels.add(sixthPanel);
+        panels.add(seventhPanel);
+        panels.add(eighthPanel);
+        
+        ArrayList<BufferedImage> imgs  = new ArrayList<>();
+        
+        for(JPanel panel : panels){
+            imgs.add(averagePanels.panelToBufferedImage(panel));
+        }
+        
+        BufferedImage filteredImage = averageFilter.applyAverageFilter(originalImage, imgs);
+        
+        ArrayList<JPanel> newImagePanel = new ArrayList<>(panels);
+        for(JPanel panel : newImagePanel){
+            ImagePanel newPanel = new ImagePanel();
+            newPanel.setImage(filteredImage);
+            panel.removeAll();
+            panel.setLayout(new BorderLayout());
+            panel.add(newPanel, BorderLayout.CENTER);
+            panel.revalidate();
+            panel.repaint();
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1222,7 +1328,7 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JPanel TenNoisesPanel;
     private javax.swing.JTextField XTextField;
     private javax.swing.JTextField YTextField;
-    private javax.swing.JPanel eightPanel;
+    private javax.swing.JPanel eighthPanel;
     private javax.swing.JPanel fifithPanel;
     private javax.swing.JPanel firstPanel;
     private javax.swing.JPanel fourthPanel;

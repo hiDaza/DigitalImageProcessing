@@ -802,7 +802,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="seventhPanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="eightPanel" min="-2" max="-2" attributes="0"/>
+                          <Component id="eighthPanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="427" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -837,7 +837,7 @@
                       <Component id="sixthPanel" max="32767" attributes="0"/>
                       <Component id="firstPanel" alignment="1" max="32767" attributes="0"/>
                       <Component id="seventhPanel" alignment="1" max="32767" attributes="0"/>
-                      <Component id="eightPanel" max="32767" attributes="0"/>
+                      <Component id="eighthPanel" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="447" max="32767" attributes="0"/>
               </Group>
@@ -977,8 +977,11 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Aplicar Filtro"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+          </Events>
         </Component>
-        <Container class="javax.swing.JPanel" name="eightPanel">
+        <Container class="javax.swing.JPanel" name="eighthPanel">
 
           <Layout>
             <DimensionLayout dim="0">
