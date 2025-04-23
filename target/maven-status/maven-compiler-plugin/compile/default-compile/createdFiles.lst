@@ -1,5 +1,6 @@
 GUI\dpiGUI$1.class
 GUI\dpiGUI$15.class
+DPIoperations\Equalization.class
 GUI\dpiGUI.class
 GUI\dpiGUI$6.class
 GUI\dpiGUI$4.class
@@ -9,6 +10,7 @@ DPIoperations\RandomNoises.class
 GUI\dpiGUI$10.class
 GUI\dpiGUI$13.class
 GUI\dpiGUI$9.class
+GUI\dpiGUI$18.class
 DPIoperations\AverageFilter.class
 DPIoperations\GrayToInversal.class
 DPIoperations\RandomPositions.class
@@ -20,6 +22,7 @@ GUI\ImagePanel.class
 GUI\dpiGUI$11.class
 GUI\dpiGUI$12.class
 GUI\dpiGUI$5.class
+GUI\dpiGUI$17.class
 GUI\dpiGUI$3.class
 GUI\dpiGUI$14.class
 GUI\dpiGUI$8.class

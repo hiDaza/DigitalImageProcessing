@@ -6,6 +6,7 @@ package GUI;
 
 import DPIoperations.AverageFilter;
 import DPIoperations.ColorToGray;
+import DPIoperations.Equalization;
 import DPIoperations.GrayToInversal;
 import DPIoperations.RandomNoises;
 import DPIoperations.RandomPositions;
@@ -66,6 +67,7 @@ public class dpiGUI extends javax.swing.JFrame {
         mainPanel.add(originaltoRGBPanel,"OriginalToRGB");
         mainPanel.add(picPixelsPanel,"picPixels");
         mainPanel.add(TenNoisesPanel,"TenNoises");
+        mainPanel.add(EqualizationPanel,"Equalization");
         imageBuffer = new ImageBuffer();
         
        
@@ -144,6 +146,10 @@ public class dpiGUI extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         eighthPanel = new javax.swing.JPanel();
+        EqualizationPanel = new javax.swing.JPanel();
+        notEqualizadePanel = new javax.swing.JPanel();
+        jButton4 = new javax.swing.JButton();
+        EqualizedPanel = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
@@ -154,6 +160,7 @@ public class dpiGUI extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1360, 720));
@@ -175,7 +182,7 @@ public class dpiGUI extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(120, 120, 120)
                 .addComponent(jLabel3)
-                .addContainerGap(420, Short.MAX_VALUE))
+                .addContainerGap(759, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
@@ -305,7 +312,7 @@ public class dpiGUI extends javax.swing.JFrame {
                             .addComponent(XTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15)
                             .addComponent(YTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(237, Short.MAX_VALUE))
+                .addContainerGap(576, Short.MAX_VALUE))
         );
 
         getContentPane().add(picPixelsPanel, "card7");
@@ -394,7 +401,7 @@ public class dpiGUI extends javax.swing.JFrame {
                         .addComponent(jButtonConverter)
                         .addGap(41, 41, 41)
                         .addComponent(getImageButton)))
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addContainerGap(513, Short.MAX_VALUE))
         );
 
         getContentPane().add(ConvertToGray, "card3");
@@ -471,7 +478,7 @@ public class dpiGUI extends javax.swing.JFrame {
                         .addGroup(inversalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(inversalGrayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(originalGrayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(241, Short.MAX_VALUE))
+                        .addContainerGap(580, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inversalPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(inversalButton)
@@ -603,7 +610,7 @@ public class dpiGUI extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 568, Short.MAX_VALUE)
+            .addGap(0, 907, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1, "card3");
@@ -785,6 +792,65 @@ public class dpiGUI extends javax.swing.JFrame {
 
         getContentPane().add(TenNoisesPanel, "card8");
 
+        javax.swing.GroupLayout notEqualizadePanelLayout = new javax.swing.GroupLayout(notEqualizadePanel);
+        notEqualizadePanel.setLayout(notEqualizadePanelLayout);
+        notEqualizadePanelLayout.setHorizontalGroup(
+            notEqualizadePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+        notEqualizadePanelLayout.setVerticalGroup(
+            notEqualizadePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        jButton4.setText("Equalizar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout EqualizedPanelLayout = new javax.swing.GroupLayout(EqualizedPanel);
+        EqualizedPanel.setLayout(EqualizedPanelLayout);
+        EqualizedPanelLayout.setHorizontalGroup(
+            EqualizedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 299, Short.MAX_VALUE)
+        );
+        EqualizedPanelLayout.setVerticalGroup(
+            EqualizedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 302, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout EqualizationPanelLayout = new javax.swing.GroupLayout(EqualizationPanel);
+        EqualizationPanel.setLayout(EqualizationPanelLayout);
+        EqualizationPanelLayout.setHorizontalGroup(
+            EqualizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EqualizationPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(notEqualizadePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(EqualizedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(833, Short.MAX_VALUE))
+        );
+        EqualizationPanelLayout.setVerticalGroup(
+            EqualizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EqualizationPanelLayout.createSequentialGroup()
+                .addGroup(EqualizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EqualizationPanelLayout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(jButton4))
+                    .addGroup(EqualizationPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(EqualizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(EqualizedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(notEqualizadePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(599, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(EqualizationPanel, "card9");
+
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
@@ -841,6 +907,14 @@ public class dpiGUI extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem6);
+
+        jMenuItem7.setText("Equalização");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem7);
 
         jMenuBar1.add(jMenu3);
 
@@ -1278,6 +1352,32 @@ public class dpiGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
+        cardLayout.show(mainPanel,"Equalization");
+        ImagePanel NotEqualizePanel = new ImagePanel();
+        NotEqualizePanel.setImage(originalImage);
+        notEqualizadePanel.removeAll();
+        notEqualizadePanel.setLayout(new BorderLayout());
+        notEqualizadePanel.add(NotEqualizePanel, BorderLayout.CENTER);
+        notEqualizadePanel.revalidate();
+        notEqualizadePanel.repaint();
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        Equalization equalization = new Equalization();
+        BufferedImage equalizededImg = equalization.EqualizationImg(originalImage);
+        ImagePanel newEqualizedPanel = new ImagePanel();
+        newEqualizedPanel.setImage(equalizededImg);
+        EqualizedPanel.removeAll();
+        EqualizedPanel.setLayout(new BorderLayout());
+        EqualizedPanel.add(newEqualizedPanel, BorderLayout.CENTER);
+        EqualizedPanel.revalidate();
+        EqualizedPanel.repaint();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1317,6 +1417,8 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JPanel BcolorPanel;
     private javax.swing.JTextField BvalueTextField;
     private javax.swing.JPanel ConvertToGray;
+    private javax.swing.JPanel EqualizationPanel;
+    private javax.swing.JPanel EqualizedPanel;
     private javax.swing.JPanel GcolorPanel;
     private javax.swing.JPanel GrayImage;
     private javax.swing.JTextField GvalueTextField;
@@ -1340,6 +1442,7 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonConverter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1366,9 +1469,11 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel notEqualizadePanel;
     private javax.swing.JPanel originalGrayPanel;
     private javax.swing.JPanel originalPanel;
     private javax.swing.JPanel originaltoRGBPanel;
