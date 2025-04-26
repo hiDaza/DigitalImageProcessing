@@ -1,2 +1,2 @@
-# DigitalProcessingImage
-Some operations of Digital Processing Image using Java.
+# DigitalImageProcessing
+Some operations of Digital Image Processing using Java.
