@@ -38,6 +38,8 @@ public class ColorToGray {
            return grayImage;
        }
        
+       
+       
        public void toGrayEver(BufferedImage img){
            for(int x = 0; x < img.getWidth(); x++){
                for(int y = 0; y < img.getHeight(); y++ ){
@@ -51,7 +53,6 @@ public class ColorToGray {
                   int grayPixel = (gray << 16) | (gray << 8) | gray;
                   img.setRGB(x, y, grayPixel);   
                }
-               
            }
        }
 }

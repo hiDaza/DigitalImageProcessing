@@ -32,7 +32,7 @@ public class AverageFilter {
                 
                 for(BufferedImage image : imgs){
                     
-                    int rgb = original.getRGB(x, y);
+                    int rgb = image.getRGB(x, y);
                     int r = (rgb >> 16)  & 0xFF;
                     int g = (rgb >> 8) & 0xFF;
                     int b = rgb & 0xFF;
