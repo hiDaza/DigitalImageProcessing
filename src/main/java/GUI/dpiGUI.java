@@ -8,6 +8,7 @@ import DPIoperations.AverageFilter;
 import DPIoperations.ColorToGray;
 import DPIoperations.Equalization;
 import DPIoperations.GrayToInversal;
+import DPIoperations.Highlight;
 import DPIoperations.Interpolation;
 import DPIoperations.MeanMedianFilters;
 import DPIoperations.RandomNoises;
@@ -71,6 +72,7 @@ public class dpiGUI extends javax.swing.JFrame {
         mainPanel.add(EqualizationPanel,"Equalization");
         mainPanel.add(InterpolationPanel,"Interpolation");
         mainPanel.add(MeanMedianPanel,"MeanMedian");
+        mainPanel.add(HighlightPanel,"Highlight");
         imageBuffer = new ImageBuffer();
 
         
@@ -170,19 +172,45 @@ public class dpiGUI extends javax.swing.JFrame {
         FilterPanel = new javax.swing.JPanel();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        HighlightPanel = new javax.swing.JPanel();
+        notHighlightPanel = new javax.swing.JPanel();
+        jButton11 = new javax.swing.JButton();
+        HighlitedPanel = new javax.swing.JPanel();
+        thresholdTextField = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jButton12 = new javax.swing.JButton();
+        jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
+        jButton17 = new javax.swing.JButton();
+        xTextField = new javax.swing.JTextField();
+        yTextField = new javax.swing.JTextField();
+        mTextField = new javax.swing.JTextField();
+        xLabel = new javax.swing.JLabel();
+        yLabel = new javax.swing.JLabel();
+        mLabel = new javax.swing.JLabel();
+        jButton18 = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        cTextField = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        gammaTextField = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        toGrayMenu = new javax.swing.JMenuItem();
+        grayToInversalMenu = new javax.swing.JMenuItem();
+        separeteRGBMenu = new javax.swing.JMenuItem();
+        foundPixelMenu = new javax.swing.JMenuItem();
+        randonNoisesMenu = new javax.swing.JMenuItem();
+        interpolationMenu = new javax.swing.JMenuItem();
+        equalizationMenu = new javax.swing.JMenuItem();
+        meanMedianMenu = new javax.swing.JMenuItem();
+        highlightMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1360, 720));
@@ -944,14 +972,12 @@ public class dpiGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(InterpolationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(getInterpoledButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(InterpolationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel16)
-                        .addComponent(jLabel17)
-                        .addGroup(InterpolationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(widthInterpolationText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                            .addComponent(heightInterpolationText, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel17)
+                    .addComponent(widthInterpolationText)
+                    .addComponent(heightInterpolationText)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(InterpoledPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(1018, Short.MAX_VALUE))
@@ -1076,6 +1102,225 @@ public class dpiGUI extends javax.swing.JFrame {
 
         getContentPane().add(MeanMedianPanel, "card11");
 
+        javax.swing.GroupLayout notHighlightPanelLayout = new javax.swing.GroupLayout(notHighlightPanel);
+        notHighlightPanel.setLayout(notHighlightPanelLayout);
+        notHighlightPanelLayout.setHorizontalGroup(
+            notHighlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+        notHighlightPanelLayout.setVerticalGroup(
+            notHighlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        jButton11.setText("Binzarizar");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
+        HighlitedPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                HighlitedPanelMouseMoved(evt);
+            }
+        });
+
+        javax.swing.GroupLayout HighlitedPanelLayout = new javax.swing.GroupLayout(HighlitedPanel);
+        HighlitedPanel.setLayout(HighlitedPanelLayout);
+        HighlitedPanelLayout.setHorizontalGroup(
+            HighlitedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+        HighlitedPanelLayout.setVerticalGroup(
+            HighlitedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLabel18.setText("Limiar ");
+
+        jButton12.setText("Limiarização");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+
+        jButton13.setText("Laplaciano");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
+        jButton14.setText("Laplaciano 9 pixels");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
+        jButton15.setText("Aplicar Laplaciano na Imagem");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+
+        jButton16.setText("Obter Imagem");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+
+        jButton17.setText("Sobel");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
+
+        xTextField.setEditable(false);
+
+        yTextField.setEditable(false);
+
+        mTextField.setEditable(false);
+
+        xLabel.setText("Coordenada X");
+
+        yLabel.setText("Coordenada Y");
+
+        mLabel.setText("Magnitude");
+
+        jButton18.setText("Compressão de Escala");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
+
+        jLabel19.setText("---------------------------------------");
+
+        jLabel20.setText("Valor de C");
+
+        jLabel21.setText("Valor de Y");
+
+        jLabel22.setText("---------------------------------------");
+
+        javax.swing.GroupLayout HighlightPanelLayout = new javax.swing.GroupLayout(HighlightPanel);
+        HighlightPanel.setLayout(HighlightPanelLayout);
+        HighlightPanelLayout.setHorizontalGroup(
+            HighlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HighlightPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(notHighlightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(HighlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel18)
+                    .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(thresholdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HighlightPanelLayout.createSequentialGroup()
+                        .addGroup(HighlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel20)
+                            .addComponent(cTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(HighlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(HighlightPanelLayout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addComponent(jLabel21))
+                            .addGroup(HighlightPanelLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(gammaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGroup(HighlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(HighlightPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(HighlitedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(HighlightPanelLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(HighlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(xLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(xTextField))
+                        .addGap(18, 18, 18)
+                        .addGroup(HighlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(yLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(yTextField))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(HighlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(mLabel)
+                            .addComponent(mTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(726, Short.MAX_VALUE))
+        );
+        HighlightPanelLayout.setVerticalGroup(
+            HighlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HighlightPanelLayout.createSequentialGroup()
+                .addGroup(HighlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(HighlightPanelLayout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(thresholdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton12)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addComponent(jButton13)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton14))
+                    .addGroup(HighlightPanelLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(HighlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(notHighlightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(HighlitedPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGroup(HighlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(HighlightPanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(HighlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(HighlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(xLabel)
+                                .addComponent(yLabel))
+                            .addComponent(mLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(HighlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(xTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(yTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HighlightPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton15)
+                        .addGap(15, 15, 15)))
+                .addComponent(jButton17)
+                .addGap(5, 5, 5)
+                .addComponent(jLabel22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(HighlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(jLabel21))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(HighlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(gammaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton18)
+                .addGap(42, 42, 42)
+                .addComponent(jButton16)
+                .addContainerGap(492, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(HighlightPanel, "card12");
+
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
@@ -1093,69 +1338,77 @@ public class dpiGUI extends javax.swing.JFrame {
 
         jMenu3.setText("Operações");
 
-        jMenuItem2.setText("Conversor Para Cinza");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        toGrayMenu.setText("Conversor Para Cinza");
+        toGrayMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                toGrayMenuActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem2);
+        jMenu3.add(toGrayMenu);
 
-        jMenuItem3.setText("Inverter o Cinza");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        grayToInversalMenu.setText("Inverter o Cinza");
+        grayToInversalMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                grayToInversalMenuActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem3);
+        jMenu3.add(grayToInversalMenu);
 
-        jMenuItem4.setText("Separar os Canais ");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        separeteRGBMenu.setText("Separar os Canais ");
+        separeteRGBMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                separeteRGBMenuActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem4);
+        jMenu3.add(separeteRGBMenu);
 
-        jMenuItem5.setText("Encontrar Pixels");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        foundPixelMenu.setText("Encontrar Pixels");
+        foundPixelMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                foundPixelMenuActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem5);
+        jMenu3.add(foundPixelMenu);
 
-        jMenuItem6.setText("Ruídos Randomicos");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        randonNoisesMenu.setText("Ruídos Randomicos");
+        randonNoisesMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                randonNoisesMenuActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem6);
+        jMenu3.add(randonNoisesMenu);
 
-        jMenuItem8.setText("Interpolação 2-Métodos");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        interpolationMenu.setText("Interpolação 2-Métodos");
+        interpolationMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                interpolationMenuActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem8);
+        jMenu3.add(interpolationMenu);
 
-        jMenuItem7.setText("Equalização");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        equalizationMenu.setText("Equalização");
+        equalizationMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                equalizationMenuActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem7);
+        jMenu3.add(equalizationMenu);
 
-        jMenuItem9.setText("Filtro Media e Mediana");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+        meanMedianMenu.setText("Filtro Media e Mediana");
+        meanMedianMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
+                meanMedianMenuActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem9);
+        jMenu3.add(meanMedianMenu);
+
+        highlightMenu.setText("Realce no Espaço");
+        highlightMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                highlightMenuActionPerformed(evt);
+            }
+        });
+        jMenu3.add(highlightMenu);
 
         jMenuBar1.add(jMenu3);
 
@@ -1177,9 +1430,11 @@ public class dpiGUI extends javax.swing.JFrame {
         
         
         
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagens", "jpg","png");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagens", "jpg","png","bmp");
         
-        JFileChooser JFCimage = new JFileChooser();
+        String userHome = System.getProperty("user.home");
+        File downloadsDir = new File(userHome, "Downloads");
+        JFileChooser JFCimage = new JFileChooser(downloadsDir);
         
         JFCimage.setFileSelectionMode(JFileChooser.FILES_ONLY);
         JFCimage.setAcceptAllFileFilterUsed(false);
@@ -1210,7 +1465,7 @@ public class dpiGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void toGrayMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toGrayMenuActionPerformed
         // TODO add your handling code here:
         CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
         cardLayout.show(mainPanel,"ConvertToGray");
@@ -1229,7 +1484,7 @@ public class dpiGUI extends javax.swing.JFrame {
             OriginalImage.revalidate();
             OriginalImage.repaint();
         }
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_toGrayMenuActionPerformed
 
     private void jButtonConverterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConverterActionPerformed
         // TODO add your handling code here:
@@ -1255,7 +1510,7 @@ public class dpiGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonConverterActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void grayToInversalMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grayToInversalMenuActionPerformed
         // TODO add your handling code here:
         CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
         cardLayout.show(mainPanel,"inversalPanel");
@@ -1271,7 +1526,7 @@ public class dpiGUI extends javax.swing.JFrame {
         
         
         
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_grayToInversalMenuActionPerformed
 
     private void getImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getImageButtonActionPerformed
         // TODO add your handling code here:
@@ -1331,7 +1586,7 @@ public class dpiGUI extends javax.swing.JFrame {
        
     }//GEN-LAST:event_getInversalButtonActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void separeteRGBMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_separeteRGBMenuActionPerformed
         // TODO add your handling code here:
         
         CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
@@ -1345,7 +1600,7 @@ public class dpiGUI extends javax.swing.JFrame {
             OriginalColorsPanel.add(originalPanelRGB, BorderLayout.CENTER);
             OriginalColorsPanel.revalidate();
             OriginalColorsPanel.repaint();
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_separeteRGBMenuActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -1383,7 +1638,7 @@ public class dpiGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void foundPixelMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foundPixelMenuActionPerformed
         // TODO add your handling code here:
         CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
         cardLayout.show(mainPanel,"picPixels");
@@ -1403,7 +1658,7 @@ public class dpiGUI extends javax.swing.JFrame {
         
         
         
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_foundPixelMenuActionPerformed
 
     private void pixelsImagePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pixelsImagePanelMouseClicked
         // TODO add your handling code here:
@@ -1444,7 +1699,7 @@ public class dpiGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_pixelsImagePanelMouseMoved
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void randonNoisesMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_randonNoisesMenuActionPerformed
         // TODO add your handling code here:
         CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
         cardLayout.show(mainPanel,"TenNoises");
@@ -1460,7 +1715,7 @@ public class dpiGUI extends javax.swing.JFrame {
         
                
             
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_randonNoisesMenuActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -1577,7 +1832,7 @@ public class dpiGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void equalizationMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equalizationMenuActionPerformed
         // TODO add your handling code here:
         CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
         cardLayout.show(mainPanel,"Equalization");
@@ -1590,7 +1845,7 @@ public class dpiGUI extends javax.swing.JFrame {
         notEqualizadePanel.revalidate();
         notEqualizadePanel.repaint();
         EqualizedPanel.removeAll();
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_equalizationMenuActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -1636,7 +1891,7 @@ public class dpiGUI extends javax.swing.JFrame {
         InterpoledPanel.repaint();
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    private void interpolationMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_interpolationMenuActionPerformed
         // TODO add your handling code here:
         CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
         cardLayout.show(mainPanel,"Interpolation");
@@ -1651,7 +1906,7 @@ public class dpiGUI extends javax.swing.JFrame {
         notInterpoledPanel.repaint();
         InterpoledPanel.removeAll();
         
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    }//GEN-LAST:event_interpolationMenuActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
@@ -1677,7 +1932,7 @@ public class dpiGUI extends javax.swing.JFrame {
            
     }//GEN-LAST:event_getInterpoledButtonActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+    private void meanMedianMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meanMedianMenuActionPerformed
         // TODO add your handling code here:
         CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
         cardLayout.show(mainPanel,"MeanMedian");
@@ -1691,7 +1946,7 @@ public class dpiGUI extends javax.swing.JFrame {
         notFilterPanel.repaint();
        
         
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
+    }//GEN-LAST:event_meanMedianMenuActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
@@ -1749,6 +2004,166 @@ public class dpiGUI extends javax.swing.JFrame {
         FilterPanel.repaint();
     }//GEN-LAST:event_jButton10ActionPerformed
 
+    private void highlightMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highlightMenuActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
+        cardLayout.show(mainPanel,"Highlight");
+        
+        ImagePanel notHighlight = new ImagePanel();
+        notHighlight.setImage(originalImage);
+        notHighlightPanel.removeAll();
+        notHighlightPanel.setLayout(new BorderLayout());
+        notHighlightPanel.add(notHighlight, BorderLayout.CENTER);
+        notHighlightPanel.revalidate();
+        notHighlightPanel.repaint();
+        
+        xTextField.setVisible(false);
+        yTextField.setVisible(false);
+        mTextField.setVisible(false);
+        xLabel.setVisible(false);
+        yLabel.setVisible(false);
+        mLabel.setVisible(false);
+        
+    }//GEN-LAST:event_highlightMenuActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        int threshold = Integer.parseInt(thresholdTextField.getText());
+        Highlight highlight = new Highlight();
+        BufferedImage binarizedImage = highlight.Binarization(originalImage,threshold);
+        
+        ImagePanel binarizedPanel = new ImagePanel();
+        binarizedPanel.setImage(binarizedImage);
+        HighlitedPanel.removeAll();
+        HighlitedPanel.setLayout(new BorderLayout());
+        HighlitedPanel.add(binarizedPanel, BorderLayout.CENTER);
+        HighlitedPanel.revalidate();
+        HighlitedPanel.repaint();
+        
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        int threshold = Integer.parseInt(thresholdTextField.getText());
+        Highlight highlight = new Highlight();
+        BufferedImage thresholdedImage = highlight.thresholding(originalImage,threshold);
+        
+        ImagePanel binarizedPanel = new ImagePanel();
+        binarizedPanel.setImage(thresholdedImage);
+        HighlitedPanel.removeAll();
+        HighlitedPanel.setLayout(new BorderLayout());
+        HighlitedPanel.add(binarizedPanel, BorderLayout.CENTER);
+        HighlitedPanel.revalidate();
+        HighlitedPanel.repaint();
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+        Highlight highlight = new Highlight();
+        BufferedImage laplacianImage = highlight.Laplacian(originalImage);
+        
+        ImagePanel laplacianePanel = new ImagePanel();
+        laplacianePanel.setImage(laplacianImage);
+        HighlitedPanel.removeAll();
+        HighlitedPanel.setLayout(new BorderLayout());
+        HighlitedPanel.add(laplacianePanel, BorderLayout.CENTER);
+        HighlitedPanel.revalidate();
+        HighlitedPanel.repaint();
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        Highlight highlight = new Highlight();
+        BufferedImage laplacianImage9x9 = highlight.Laplacian9X9(originalImage);
+        
+        ImagePanel laplacianePanel = new ImagePanel();
+        laplacianePanel.setImage(laplacianImage9x9);
+        HighlitedPanel.removeAll();
+        HighlitedPanel.setLayout(new BorderLayout());
+        HighlitedPanel.add(laplacianePanel, BorderLayout.CENTER);
+        HighlitedPanel.revalidate();
+        HighlitedPanel.repaint();
+        
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+        Highlight highlight = new Highlight();
+        BufferedImage laplacianImageA = highlight.applyLaplaciane(originalImage);
+        
+        ImagePanel laplacianePanel = new ImagePanel();
+        laplacianePanel.setImage(laplacianImageA);
+        HighlitedPanel.removeAll();
+        HighlitedPanel.setLayout(new BorderLayout());
+        HighlitedPanel.add(laplacianePanel, BorderLayout.CENTER);
+        HighlitedPanel.revalidate();
+        HighlitedPanel.repaint();
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        // TODO add your handling code here:
+        
+        Highlight highlight = new Highlight();
+        BufferedImage sobelImage = highlight.Sobel(originalImage);
+        
+        ImagePanel sobelPanel = new ImagePanel();
+        sobelPanel.setImage(sobelImage);
+        HighlitedPanel.removeAll();
+        HighlitedPanel.setLayout(new BorderLayout());
+        HighlitedPanel.add(sobelPanel, BorderLayout.CENTER);
+        HighlitedPanel.revalidate();
+        HighlitedPanel.repaint();
+        xTextField.setVisible(true);
+        yTextField.setVisible(true);
+        mTextField.setVisible(true);
+        xLabel.setVisible(true);
+        yLabel.setVisible(true);
+        mLabel.setVisible(true);
+        
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void HighlitedPanelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HighlitedPanelMouseMoved
+        // TODO add your handling code here:
+        int x = evt.getX();
+        int y = evt.getY();
+        
+        String startX = Integer.toString(x);
+        String startY = Integer.toString(y);
+        
+        Highlight highlight = new Highlight();
+        
+        int value = highlight.Magnitude(originalImage, x, y);
+        
+        String valueText = Integer.toString(value);
+        
+        xTextField.setText(startX);
+        yTextField.setText(startY);
+        mTextField.setText(valueText);
+    }//GEN-LAST:event_HighlitedPanelMouseMoved
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        // TODO add your handling code here:
+        Highlight highlight = new Highlight();
+        double c =  Double.parseDouble(cTextField.getText());
+        double g = Double.parseDouble(gammaTextField.getText());
+        
+        BufferedImage compressedImage = highlight.DinamicScaleCompression(originalImage,c,g);
+        
+        ImagePanel compressedPanel = new ImagePanel();
+        compressedPanel.setImage(compressedImage);
+        HighlitedPanel.removeAll();
+        HighlitedPanel.setLayout(new BorderLayout());
+        HighlitedPanel.add(compressedPanel, BorderLayout.CENTER);
+        HighlitedPanel.revalidate();
+        HighlitedPanel.repaint();
+    }//GEN-LAST:event_jButton18ActionPerformed
+   
+   
     /**
      * @param args the command line arguments
      */
@@ -1794,6 +2209,8 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JPanel GcolorPanel;
     private javax.swing.JPanel GrayImage;
     private javax.swing.JTextField GvalueTextField;
+    private javax.swing.JPanel HighlightPanel;
+    private javax.swing.JPanel HighlitedPanel;
     private javax.swing.JPanel InterpolationPanel;
     private javax.swing.JPanel InterpoledPanel;
     private javax.swing.JPanel MeanMedianPanel;
@@ -1805,20 +2222,35 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JPanel TenNoisesPanel;
     private javax.swing.JTextField XTextField;
     private javax.swing.JTextField YTextField;
+    private javax.swing.JTextField cTextField;
     private javax.swing.JPanel eighthPanel;
+    private javax.swing.JMenuItem equalizationMenu;
     private javax.swing.JPanel fifithPanel;
     private javax.swing.JPanel firstPanel;
+    private javax.swing.JMenuItem foundPixelMenu;
     private javax.swing.JPanel fourthPanel;
+    private javax.swing.JTextField gammaTextField;
     private javax.swing.JButton getEqualizadedButton;
     private javax.swing.JButton getImageButton;
     private javax.swing.JButton getInterpoledButton;
     private javax.swing.JButton getInversalButton;
+    private javax.swing.JMenuItem grayToInversalMenu;
     private javax.swing.JTextField heightInterpolationText;
+    private javax.swing.JMenuItem highlightMenu;
+    private javax.swing.JMenuItem interpolationMenu;
     private javax.swing.JButton inversalButton;
     private javax.swing.JPanel inversalGrayPanel;
     private javax.swing.JPanel inversalPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1837,7 +2269,12 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1850,29 +2287,33 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel mLabel;
+    private javax.swing.JTextField mTextField;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JMenuItem meanMedianMenu;
     private javax.swing.JPanel notEqualizadePanel;
     private javax.swing.JPanel notFilterPanel;
+    private javax.swing.JPanel notHighlightPanel;
     private javax.swing.JPanel notInterpoledPanel;
     private javax.swing.JPanel originalGrayPanel;
     private javax.swing.JPanel originalPanel;
     private javax.swing.JPanel originaltoRGBPanel;
     private javax.swing.JPanel picPixelsPanel;
     private javax.swing.JPanel pixelsImagePanel;
+    private javax.swing.JMenuItem randonNoisesMenu;
     private javax.swing.JPanel secondPanel;
+    private javax.swing.JMenuItem separeteRGBMenu;
     private javax.swing.JPanel seventhPanel;
     private javax.swing.JPanel sixthPanel;
     private javax.swing.JPanel thirdPanel;
+    private javax.swing.JTextField thresholdTextField;
+    private javax.swing.JMenuItem toGrayMenu;
     private javax.swing.JTextField widthInterpolationText;
+    private javax.swing.JLabel xLabel;
+    private javax.swing.JTextField xTextField;
+    private javax.swing.JLabel yLabel;
+    private javax.swing.JTextField yTextField;
     // End of variables declaration//GEN-END:variables
 }
