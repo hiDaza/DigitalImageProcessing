@@ -115,7 +115,7 @@ public class dpiGUI extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         YTextField = new javax.swing.JTextField();
         ConvertToGray = new javax.swing.JPanel();
-        OriginalImage = new javax.swing.JPanel();
+        OriginalImagePanel = new javax.swing.JPanel();
         GrayImage = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -172,6 +172,7 @@ public class dpiGUI extends javax.swing.JFrame {
         FilterPanel = new javax.swing.JPanel();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        jButton19 = new javax.swing.JButton();
         HighlightPanel = new javax.swing.JPanel();
         notHighlightPanel = new javax.swing.JPanel();
         jButton11 = new javax.swing.JButton();
@@ -216,6 +217,14 @@ public class dpiGUI extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1360, 720));
         getContentPane().setLayout(new java.awt.CardLayout());
 
+        mainPanel.setMaximumSize(new java.awt.Dimension(400, 200));
+        mainPanel.setMinimumSize(new java.awt.Dimension(400, 200));
+        mainPanel.setPreferredSize(new java.awt.Dimension(400, 200));
+
+        jPanel2.setMaximumSize(new java.awt.Dimension(400, 200));
+        jPanel2.setMinimumSize(new java.awt.Dimension(400, 200));
+        jPanel2.setPreferredSize(new java.awt.Dimension(400, 200));
+
         jLabel3.setText("Bem Vindo ao Programa de Processamento Digital De Imagem, Selecione as opções Desejadas no Menu.");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -241,14 +250,14 @@ public class dpiGUI extends javax.swing.JFrame {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1539, Short.MAX_VALUE)
                 .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1049, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -367,14 +376,14 @@ public class dpiGUI extends javax.swing.JFrame {
 
         getContentPane().add(picPixelsPanel, "card7");
 
-        javax.swing.GroupLayout OriginalImageLayout = new javax.swing.GroupLayout(OriginalImage);
-        OriginalImage.setLayout(OriginalImageLayout);
-        OriginalImageLayout.setHorizontalGroup(
-            OriginalImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout OriginalImagePanelLayout = new javax.swing.GroupLayout(OriginalImagePanel);
+        OriginalImagePanel.setLayout(OriginalImagePanelLayout);
+        OriginalImagePanelLayout.setHorizontalGroup(
+            OriginalImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        OriginalImageLayout.setVerticalGroup(
-            OriginalImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        OriginalImagePanelLayout.setVerticalGroup(
+            OriginalImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 315, Short.MAX_VALUE)
         );
 
@@ -386,7 +395,7 @@ public class dpiGUI extends javax.swing.JFrame {
         );
         GrayImageLayout.setVerticalGroup(
             GrayImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 292, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jLabel1.setText("Imagem Original");
@@ -415,11 +424,8 @@ public class dpiGUI extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addGroup(ConvertToGrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                    .addComponent(OriginalImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(ConvertToGrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(ConvertToGrayLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 945, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(OriginalImagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(ConvertToGrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ConvertToGrayLayout.createSequentialGroup()
                         .addGroup(ConvertToGrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(ConvertToGrayLayout.createSequentialGroup()
@@ -428,9 +434,12 @@ public class dpiGUI extends javax.swing.JFrame {
                             .addGroup(ConvertToGrayLayout.createSequentialGroup()
                                 .addGap(50, 50, 50)
                                 .addComponent(getImageButton)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(GrayImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(65, 65, 65))
+                        .addGap(36, 36, 36)
+                        .addComponent(GrayImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ConvertToGrayLayout.createSequentialGroup()
+                        .addGap(253, 253, 253)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(757, Short.MAX_VALUE))
         );
         ConvertToGrayLayout.setVerticalGroup(
             ConvertToGrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -441,16 +450,15 @@ public class dpiGUI extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGroup(ConvertToGrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ConvertToGrayLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(OriginalImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ConvertToGrayLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(GrayImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ConvertToGrayLayout.createSequentialGroup()
                         .addGap(156, 156, 156)
                         .addComponent(jButtonConverter)
                         .addGap(41, 41, 41)
-                        .addComponent(getImageButton)))
+                        .addComponent(getImageButton))
+                    .addGroup(ConvertToGrayLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(ConvertToGrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(OriginalImagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(GrayImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(667, Short.MAX_VALUE))
         );
 
@@ -475,11 +483,11 @@ public class dpiGUI extends javax.swing.JFrame {
         inversalGrayPanel.setLayout(inversalGrayPanelLayout);
         inversalGrayPanelLayout.setHorizontalGroup(
             inversalGrayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 282, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
         inversalGrayPanelLayout.setVerticalGroup(
             inversalGrayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 213, Short.MAX_VALUE)
+            .addGap(0, 237, Short.MAX_VALUE)
         );
 
         inversalButton.setText("Inverter");
@@ -513,28 +521,27 @@ public class dpiGUI extends javax.swing.JFrame {
                 .addGroup(inversalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inversalGrayPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(830, Short.MAX_VALUE))
+                .addContainerGap(812, Short.MAX_VALUE))
         );
         inversalPanelLayout.setVerticalGroup(
             inversalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inversalPanelLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addGroup(inversalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
                 .addGroup(inversalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(inversalPanelLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
+                        .addGap(62, 62, 62)
+                        .addGroup(inversalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(inversalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(inversalGrayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(originalGrayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(734, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inversalPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(originalGrayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(inversalPanelLayout.createSequentialGroup()
+                        .addGap(162, 162, 162)
                         .addComponent(inversalButton)
                         .addGap(18, 18, 18)
-                        .addComponent(getInversalButton)
-                        .addGap(172, 172, 172))))
+                        .addComponent(getInversalButton)))
+                .addContainerGap(734, Short.MAX_VALUE))
         );
 
         getContentPane().add(inversalPanel, "card5");
@@ -955,7 +962,7 @@ public class dpiGUI extends javax.swing.JFrame {
             }
         });
 
-        getInterpoledButton.setText("Obter Image");
+        getInterpoledButton.setText("Obter Imagem");
         getInterpoledButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 getInterpoledButtonActionPerformed(evt);
@@ -1061,6 +1068,13 @@ public class dpiGUI extends javax.swing.JFrame {
             }
         });
 
+        jButton19.setText("Obter Imagem");
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout MeanMedianPanelLayout = new javax.swing.GroupLayout(MeanMedianPanel);
         MeanMedianPanel.setLayout(MeanMedianPanelLayout);
         MeanMedianPanelLayout.setHorizontalGroup(
@@ -1073,7 +1087,8 @@ public class dpiGUI extends javax.swing.JFrame {
                     .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(FilterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(599, Short.MAX_VALUE))
@@ -1090,7 +1105,9 @@ public class dpiGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton9)
                         .addGap(26, 26, 26)
-                        .addComponent(jButton10))
+                        .addComponent(jButton10)
+                        .addGap(27, 27, 27)
+                        .addComponent(jButton19))
                     .addGroup(MeanMedianPanelLayout.createSequentialGroup()
                         .addGap(52, 52, 52)
                         .addComponent(FilterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1477,12 +1494,12 @@ public class dpiGUI extends javax.swing.JFrame {
         if(img != null){
             ImagePanel OriginalPanel = new ImagePanel();
             
-            OriginalImage.removeAll();
+            OriginalImagePanel.removeAll();
             OriginalPanel.setImage(img);
-            OriginalImage.setLayout(new BorderLayout());
-            OriginalImage.add(OriginalPanel, BorderLayout.CENTER);
-            OriginalImage.revalidate();
-            OriginalImage.repaint();
+            OriginalImagePanel.setLayout(new BorderLayout());
+            OriginalImagePanel.add(OriginalPanel, BorderLayout.CENTER);
+            OriginalImagePanel.revalidate();
+            OriginalImagePanel.repaint();
         }
     }//GEN-LAST:event_toGrayMenuActionPerformed
 
@@ -1530,17 +1547,15 @@ public class dpiGUI extends javax.swing.JFrame {
 
     private void getImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getImageButtonActionPerformed
         // TODO add your handling code here:
-         
         
-       ColorToGray RGBtoGray = new ColorToGray();
-       RGBtoGray.toGrayEver(originalImage);
-       OriginalImage.removeAll();
-       ImagePanel OriginalPanel = new ImagePanel();
-       OriginalPanel.setImage(originalImage);
-       OriginalImage.setLayout(new BorderLayout());
-       OriginalImage.add(OriginalPanel, BorderLayout.CENTER);
-       OriginalImage.revalidate();
-       OriginalImage.repaint();
+        ImagePanel getImg = new ImagePanel();
+        originalImage = getImg.panelToBufferedImage(GrayImage);
+        getImg.setImage(originalImage);
+        OriginalImagePanel.removeAll();
+        OriginalImagePanel.setLayout(new BorderLayout());
+        OriginalImagePanel.add(getImg, BorderLayout.CENTER);
+        OriginalImagePanel.revalidate();
+        OriginalImagePanel.repaint();
         
     }//GEN-LAST:event_getImageButtonActionPerformed
 
@@ -1572,15 +1587,12 @@ public class dpiGUI extends javax.swing.JFrame {
     private void getInversalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getInversalButtonActionPerformed
         // TODO add your handling code here:
         
-       GrayToInversal graytoInversal = new GrayToInversal();
-       graytoInversal.toInversalEver(originalImage);
-       
-       ImagePanel inversalPanel = new ImagePanel();
-       
-       inversalPanel.setImage(originalImage);
+       ImagePanel getImg = new ImagePanel();
+       originalImage = getImg.panelToBufferedImage(inversalGrayPanel);
+       getImg.setImage(originalImage);
        originalGrayPanel.removeAll();
        originalGrayPanel.setLayout(new BorderLayout());
-       originalGrayPanel.add(inversalPanel, BorderLayout.CENTER);
+       originalGrayPanel.add(getImg, BorderLayout.CENTER);
        originalGrayPanel.revalidate();
        originalGrayPanel.repaint();
        
@@ -1863,8 +1875,8 @@ public class dpiGUI extends javax.swing.JFrame {
     private void getEqualizadedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getEqualizadedButtonActionPerformed
         // TODO add your handling code here:
              
-       Equalization equalization = new Equalization();
-       equalization.EqualizationImgEver(originalImage);
+       ImagePanel getImg = new ImagePanel();
+       originalImage = getImg.panelToBufferedImage(EqualizedPanel);
        notEqualizadePanel.removeAll();
        ImagePanel Equalizaded = new ImagePanel();
        Equalizaded.setImage(originalImage);
@@ -1929,7 +1941,14 @@ public class dpiGUI extends javax.swing.JFrame {
 
     private void getInterpoledButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getInterpoledButtonActionPerformed
         // TODO add your handling code here:
-           
+        ImagePanel getImg = new ImagePanel();
+        originalImage = getImg.panelToBufferedImage(InterpoledPanel);
+        notInterpoledPanel.removeAll();
+        getImg.setImage(originalImage);
+        notInterpoledPanel.setLayout(new BorderLayout());
+        notInterpoledPanel.add(getImg, BorderLayout.CENTER);
+        notInterpoledPanel.revalidate();
+        notInterpoledPanel.repaint();
     }//GEN-LAST:event_getInterpoledButtonActionPerformed
 
     private void meanMedianMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meanMedianMenuActionPerformed
@@ -1944,6 +1963,8 @@ public class dpiGUI extends javax.swing.JFrame {
         notFilterPanel.add(notFilterMM, BorderLayout.CENTER);
         notFilterPanel.revalidate();
         notFilterPanel.repaint();
+        
+        FilterPanel.removeAll();
        
         
     }//GEN-LAST:event_meanMedianMenuActionPerformed
@@ -2016,6 +2037,8 @@ public class dpiGUI extends javax.swing.JFrame {
         notHighlightPanel.add(notHighlight, BorderLayout.CENTER);
         notHighlightPanel.revalidate();
         notHighlightPanel.repaint();
+        
+        HighlitedPanel.removeAll();
         
         xTextField.setVisible(false);
         yTextField.setVisible(false);
@@ -2102,7 +2125,16 @@ public class dpiGUI extends javax.swing.JFrame {
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
-        
+        ImagePanel getImg = new ImagePanel();
+        originalImage = getImg.panelToBufferedImage(HighlitedPanel);
+
+        notHighlightPanel.removeAll();
+        getImg.setImage(originalImage);
+        notHighlightPanel.setLayout(new BorderLayout());
+        notHighlightPanel.add(getImg, BorderLayout.CENTER);
+        notHighlightPanel.revalidate();
+        notHighlightPanel.repaint();
+
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
@@ -2149,10 +2181,10 @@ public class dpiGUI extends javax.swing.JFrame {
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
         Highlight highlight = new Highlight();
-        double c =  Double.parseDouble(cTextField.getText());
-        double g = Double.parseDouble(gammaTextField.getText());
+        double c = Double.parseDouble(cTextField.getText());
+        double y = Double.parseDouble(gammaTextField.getText());
         
-        BufferedImage compressedImage = highlight.DinamicScaleCompression(originalImage,c,g);
+        BufferedImage compressedImage = highlight.DinamicScaleCompression(originalImage,c,y);
         
         ImagePanel compressedPanel = new ImagePanel();
         compressedPanel.setImage(compressedImage);
@@ -2161,7 +2193,23 @@ public class dpiGUI extends javax.swing.JFrame {
         HighlitedPanel.add(compressedPanel, BorderLayout.CENTER);
         HighlitedPanel.revalidate();
         HighlitedPanel.repaint();
+        
+        
+
     }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        // TODO add your handling code here:
+        ImagePanel getImg = new ImagePanel();
+        originalImage = getImg.panelToBufferedImage(FilterPanel);
+        
+        notFilterPanel.removeAll();
+        getImg.setImage(originalImage);
+        notFilterPanel.setLayout(new BorderLayout());
+        notFilterPanel.add(getImg, BorderLayout.CENTER);
+        notFilterPanel.revalidate();
+        notFilterPanel.repaint();
+    }//GEN-LAST:event_jButton19ActionPerformed
    
    
     /**
@@ -2215,7 +2263,7 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JPanel InterpoledPanel;
     private javax.swing.JPanel MeanMedianPanel;
     private javax.swing.JPanel OriginalColorsPanel;
-    private javax.swing.JPanel OriginalImage;
+    private javax.swing.JPanel OriginalImagePanel;
     private javax.swing.JTextField RGBTextField;
     private javax.swing.JPanel RcolorPanel;
     private javax.swing.JTextField RvalueTextField;
@@ -2251,6 +2299,7 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

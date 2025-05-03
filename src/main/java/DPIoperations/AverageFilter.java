@@ -14,16 +14,12 @@ import java.util.ArrayList;
  * @author gerson.lucas_unesp
  */
 public class AverageFilter {
-     
-     
     public BufferedImage applyAverageFilter(BufferedImage original, ArrayList<BufferedImage> imgs){
         
         BufferedImage filteredImage = new BufferedImage(original.getWidth(),original.getHeight(),original.getType());
         Graphics gpc = filteredImage.getGraphics();
         gpc.drawImage(original, 0, 0, null);
         gpc.dispose();
-        
-
         
         for(int x = 0; x < original.getWidth(); x++){
             for(int y = 0; y < original.getHeight(); y++){
@@ -52,8 +48,6 @@ public class AverageFilter {
                
             }
         }
-        
-        
         return filteredImage;
     }
     

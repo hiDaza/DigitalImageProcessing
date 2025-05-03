@@ -60,7 +60,6 @@ public class Highlight {
                 thresholded.setRGB(x,y,newRGB);
             }
         }
-
         return thresholded;
     } 
     
@@ -84,9 +83,7 @@ public class Highlight {
             {0, -1, 0},
             {-1, 4, -1},
             {0, -1, 0}
-        }; 
-        
-        
+        };
         
         for(int x = 0; x < img.getWidth(); x++){
             for(int y = 0; y < img.getHeight(); y++){
@@ -129,9 +126,7 @@ public class Highlight {
             {-1, -1, -1},
             {-1, 8, -1},
             {-1, -1, -1}
-        }; 
-        
-        
+        };
         
         for(int x = 0; x < img.getWidth(); x++){
             for(int y = 0; y < img.getHeight(); y++){
@@ -159,8 +154,6 @@ public class Highlight {
                 laplacianImage.setRGB(x, y, newRGB);
             }
         }
-        
-
         return laplacianImage;
     }
     

@@ -16,6 +16,7 @@ public class DigitalProcessingImage {
     public static void main(String[] args) {
         
         dpiGUI dpiFrame = new dpiGUI();
+        dpiFrame.setSize(200, 200);
         dpiFrame.setVisible(true);
     }
 }

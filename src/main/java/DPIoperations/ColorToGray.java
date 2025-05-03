@@ -12,10 +12,7 @@ import java.awt.image.BufferedImage;
  * @author Daza_
  */
 public class ColorToGray {
-      
-       
-       
-       
+    
        public BufferedImage toGray(BufferedImage img){
            BufferedImage grayImage = new BufferedImage(img.getWidth(),img.getHeight(),img.getType());
            Graphics grp = grayImage.getGraphics();
@@ -38,8 +35,7 @@ public class ColorToGray {
            return grayImage;
        }
        
-       
-       
+
        public void toGrayEver(BufferedImage img){
            for(int x = 0; x < img.getWidth(); x++){
                for(int y = 0; y < img.getHeight(); y++ ){
