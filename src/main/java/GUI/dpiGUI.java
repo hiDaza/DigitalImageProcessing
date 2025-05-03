@@ -4,6 +4,8 @@
  */
 package GUI;
 
+
+import Converter.ColorConverterFrame;
 import DPIoperations.AverageFilter;
 import DPIoperations.ColorToGray;
 import DPIoperations.Equalization;
@@ -27,6 +29,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -200,6 +203,7 @@ public class dpiGUI extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -1304,9 +1308,8 @@ public class dpiGUI extends javax.swing.JFrame {
                     .addGroup(HighlightPanelLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(HighlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(HighlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(xLabel)
-                                .addComponent(yLabel))
+                            .addComponent(yLabel)
+                            .addComponent(xLabel)
                             .addComponent(mLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(HighlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1338,7 +1341,16 @@ public class dpiGUI extends javax.swing.JFrame {
 
         getContentPane().add(HighlightPanel, "card12");
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Conversor");
+
+        jMenuItem2.setText("Abrir Conversor");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
+
         jMenuBar1.add(jMenu2);
 
         jMenu1.setText("File");
@@ -1449,8 +1461,8 @@ public class dpiGUI extends javax.swing.JFrame {
         
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagens", "jpg","png","bmp");
         
-        String userHome = System.getProperty("user.home");
-        File downloadsDir = new File(userHome, "Downloads");
+        String userHome = System.getProperty("user.dir");
+        File downloadsDir = new File(userHome, "ImagensPDI");
         JFileChooser JFCimage = new JFileChooser(downloadsDir);
         
         JFCimage.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -2210,6 +2222,16 @@ public class dpiGUI extends javax.swing.JFrame {
         notFilterPanel.revalidate();
         notFilterPanel.repaint();
     }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+       SwingUtilities.invokeLater(() -> {
+        ColorConverterFrame converter = new ColorConverterFrame();
+        converter.setVisible(true);
+    });
+       
+        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
    
    
     /**
@@ -2336,6 +2358,7 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel mLabel;

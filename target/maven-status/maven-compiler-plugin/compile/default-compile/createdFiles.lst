@@ -32,6 +32,8 @@ GUI\dpiGUI$33.class
 DPIoperations\Equalization.class
 DPIoperations\MeanMedianFilters.class
 GUI\dpiGUI$6.class
+GUI\dpiGUI$40.class
+Converter\ColorConverterFrame.class
 GUI\dpiGUI$20.class
 GUI\dpiGUI$30.class
 GUI\dpiGUI$10.class
@@ -43,6 +45,7 @@ DPIoperations\AverageFilter.class
 GUI\dpiGUI$39.class
 DPIoperations\GrayToInversal.class
 GUI\dpiGUI$7.class
+Converter\ColorConverter.class
 GUI\dpiGUI$16.class
 GUI\dpiGUI$32.class
 GUI\dpiGUI$36.class
