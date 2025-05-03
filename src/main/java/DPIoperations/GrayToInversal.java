@@ -34,22 +34,4 @@ public class GrayToInversal {
         }
         return inversalGray;       
     }
-    
-    public void toInversalEver(BufferedImage img){
-           for(int x = 0; x < img.getWidth(); x++){
-               for(int y = 0; y < img.getHeight(); y++ ){
-                   int rgb = img.getRGB(x, y);
-                   int r = 255 - (rgb >> 16) & 0xFF;
-                   int g = 255 - (rgb >> 8) & 0xFF;
-                   int b = 255 - rgb & 0xFF;
-                   
-                  int inversalImage = (r << 16) | (g << 8) | b;
-                  
-                  img.setRGB(x, y, inversalImage);   
-               } 
-           }
-       }
-    
-    
-    
 }
