@@ -153,6 +153,7 @@ public class dpiGUI extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         eighthPanel = new javax.swing.JPanel();
+        jScrollBar1 = new javax.swing.JScrollBar();
         EqualizationPanel = new javax.swing.JPanel();
         notEqualizadePanel = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
@@ -823,6 +824,10 @@ public class dpiGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(eighthPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 439, Short.MAX_VALUE))))
+            .addGroup(TenNoisesPanelLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         TenNoisesPanelLayout.setVerticalGroup(
             TenNoisesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -848,7 +853,9 @@ public class dpiGUI extends javax.swing.JFrame {
                     .addComponent(firstPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(seventhPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(eighthPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(601, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(541, Short.MAX_VALUE))
         );
 
         getContentPane().add(TenNoisesPanel, "card8");
@@ -1502,17 +1509,18 @@ public class dpiGUI extends javax.swing.JFrame {
         
         
         
-        BufferedImage img = imageBuffer.getImage();
-        if(img != null){
+
+  
             ImagePanel OriginalPanel = new ImagePanel();
             
             OriginalImagePanel.removeAll();
-            OriginalPanel.setImage(img);
+            GrayImage.removeAll();
+            OriginalPanel.setImage(originalImage);
             OriginalImagePanel.setLayout(new BorderLayout());
             OriginalImagePanel.add(OriginalPanel, BorderLayout.CENTER);
             OriginalImagePanel.revalidate();
             OriginalImagePanel.repaint();
-        }
+        
     }//GEN-LAST:event_toGrayMenuActionPerformed
 
     private void jButtonConverterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConverterActionPerformed
@@ -1547,6 +1555,7 @@ public class dpiGUI extends javax.swing.JFrame {
             ImagePanel grayOriginalPanel = new ImagePanel();
             grayOriginalPanel.setImage(originalImage);
             originalGrayPanel.removeAll();
+            inversalGrayPanel.removeAll();
             originalGrayPanel.setLayout(new BorderLayout());
             originalGrayPanel.add(grayOriginalPanel, BorderLayout.CENTER);
             originalGrayPanel.revalidate();
@@ -1619,7 +1628,11 @@ public class dpiGUI extends javax.swing.JFrame {
         
             ImagePanel originalPanelRGB = new ImagePanel();
             originalPanelRGB.setImage(originalImage);
-            //originaltoRGBPanel.removeAll();
+            originalPanelRGB.removeAll();
+            OriginalColorsPanel.removeAll();
+            RcolorPanel.removeAll();
+            GcolorPanel.removeAll();
+            BcolorPanel.removeAll();
             OriginalColorsPanel.setLayout(new BorderLayout());
             OriginalColorsPanel.add(originalPanelRGB, BorderLayout.CENTER);
             OriginalColorsPanel.revalidate();
@@ -1731,7 +1744,17 @@ public class dpiGUI extends javax.swing.JFrame {
         
             ImagePanel originalPanelTen = new ImagePanel();
             originalPanelTen.setImage(originalImage);
-            //originalPanelTen.removeAll(); //test
+            originalPanelTen.removeAll(); //test
+            originalPanel.removeAll();
+            firstPanel.removeAll();
+            secondPanel.removeAll();
+            thirdPanel.removeAll();
+            fourthPanel.removeAll();
+            fifithPanel.removeAll();
+            sixthPanel.removeAll();
+            seventhPanel.removeAll();
+            eighthPanel.removeAll();
+            
             originalPanel.setLayout(new BorderLayout());
             originalPanel.add(originalPanelTen, BorderLayout.CENTER);
             originalPanel.revalidate();
@@ -1861,6 +1884,7 @@ public class dpiGUI extends javax.swing.JFrame {
         CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
         cardLayout.show(mainPanel,"Equalization");
         notEqualizadePanel.removeAll();
+        EqualizedPanel.removeAll();
         ImagePanel NotEqualizePanel = new ImagePanel();
         NotEqualizePanel.setImage(originalImage);
         notEqualizadePanel.removeAll();
@@ -1971,12 +1995,13 @@ public class dpiGUI extends javax.swing.JFrame {
         ImagePanel notFilterMM = new ImagePanel();
         notFilterMM.setImage(originalImage);
         notFilterPanel.removeAll();
+        FilterPanel.removeAll();
         notFilterPanel.setLayout(new BorderLayout());
         notFilterPanel.add(notFilterMM, BorderLayout.CENTER);
         notFilterPanel.revalidate();
         notFilterPanel.repaint();
         
-        FilterPanel.removeAll();
+        
        
         
     }//GEN-LAST:event_meanMedianMenuActionPerformed
@@ -2045,6 +2070,7 @@ public class dpiGUI extends javax.swing.JFrame {
         ImagePanel notHighlight = new ImagePanel();
         notHighlight.setImage(originalImage);
         notHighlightPanel.removeAll();
+        HighlitedPanel.removeAll();
         notHighlightPanel.setLayout(new BorderLayout());
         notHighlightPanel.add(notHighlight, BorderLayout.CENTER);
         notHighlightPanel.revalidate();
@@ -2361,6 +2387,7 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JLabel mLabel;
     private javax.swing.JTextField mTextField;
     private javax.swing.JPanel mainPanel;
