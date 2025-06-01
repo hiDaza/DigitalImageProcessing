@@ -1,16 +1,17 @@
-C:\Users\gerson.lucas_unesp\Desktop\Nova pasta\DigitalImageProcessing\src\main\java\com\mycompany\digitalprocessingimage\DigitalProcessingImage.java
-C:\Users\gerson.lucas_unesp\Desktop\Nova pasta\DigitalImageProcessing\src\main\java\Converter\ColorConverter.java
-C:\Users\gerson.lucas_unesp\Desktop\Nova pasta\DigitalImageProcessing\src\main\java\Converter\ColorConverterFrame.java
-C:\Users\gerson.lucas_unesp\Desktop\Nova pasta\DigitalImageProcessing\src\main\java\DPIoperations\AverageFilter.java
-C:\Users\gerson.lucas_unesp\Desktop\Nova pasta\DigitalImageProcessing\src\main\java\DPIoperations\ColorToGray.java
-C:\Users\gerson.lucas_unesp\Desktop\Nova pasta\DigitalImageProcessing\src\main\java\DPIoperations\Equalization.java
-C:\Users\gerson.lucas_unesp\Desktop\Nova pasta\DigitalImageProcessing\src\main\java\DPIoperations\GrayToInversal.java
-C:\Users\gerson.lucas_unesp\Desktop\Nova pasta\DigitalImageProcessing\src\main\java\DPIoperations\Highlight.java
-C:\Users\gerson.lucas_unesp\Desktop\Nova pasta\DigitalImageProcessing\src\main\java\DPIoperations\Interpolation.java
-C:\Users\gerson.lucas_unesp\Desktop\Nova pasta\DigitalImageProcessing\src\main\java\DPIoperations\MeanMedianFilters.java
-C:\Users\gerson.lucas_unesp\Desktop\Nova pasta\DigitalImageProcessing\src\main\java\DPIoperations\RandomNoises.java
-C:\Users\gerson.lucas_unesp\Desktop\Nova pasta\DigitalImageProcessing\src\main\java\DPIoperations\RandomPositions.java
-C:\Users\gerson.lucas_unesp\Desktop\Nova pasta\DigitalImageProcessing\src\main\java\DPIoperations\SeparateRGB.java
-C:\Users\gerson.lucas_unesp\Desktop\Nova pasta\DigitalImageProcessing\src\main\java\GUI\dpiGUI.java
-C:\Users\gerson.lucas_unesp\Desktop\Nova pasta\DigitalImageProcessing\src\main\java\GUI\ImagePanel.java
-C:\Users\gerson.lucas_unesp\Desktop\Nova pasta\DigitalImageProcessing\src\main\java\LogsImage\ImageBuffer.java
+C:\Users\Daza_\Desktop\DIP\DigitalImageProcessing\src\main\java\com\mycompany\digitalprocessingimage\DigitalProcessingImage.java
+C:\Users\Daza_\Desktop\DIP\DigitalImageProcessing\src\main\java\DPIoperations\Interpolation.java
+C:\Users\Daza_\Desktop\DIP\DigitalImageProcessing\src\main\java\Converter\ColorConverterFrame.java
+C:\Users\Daza_\Desktop\DIP\DigitalImageProcessing\src\main\java\DPIoperations\GrayToInversal.java
+C:\Users\Daza_\Desktop\DIP\DigitalImageProcessing\src\main\java\DPIoperations\RandomPositions.java
+C:\Users\Daza_\Desktop\DIP\DigitalImageProcessing\src\main\java\DPIoperations\Transformed.java
+C:\Users\Daza_\Desktop\DIP\DigitalImageProcessing\src\main\java\DPIoperations\Equalization.java
+C:\Users\Daza_\Desktop\DIP\DigitalImageProcessing\src\main\java\DPIoperations\Highlight.java
+C:\Users\Daza_\Desktop\DIP\DigitalImageProcessing\src\main\java\GUI\dpiGUI.java
+C:\Users\Daza_\Desktop\DIP\DigitalImageProcessing\src\main\java\DPIoperations\AverageFilter.java
+C:\Users\Daza_\Desktop\DIP\DigitalImageProcessing\src\main\java\LogsImage\ImageBuffer.java
+C:\Users\Daza_\Desktop\DIP\DigitalImageProcessing\src\main\java\DPIoperations\RandomNoises.java
+C:\Users\Daza_\Desktop\DIP\DigitalImageProcessing\src\main\java\Converter\ColorConverter.java
+C:\Users\Daza_\Desktop\DIP\DigitalImageProcessing\src\main\java\DPIoperations\MeanMedianFilters.java
+C:\Users\Daza_\Desktop\DIP\DigitalImageProcessing\src\main\java\DPIoperations\ColorToGray.java
+C:\Users\Daza_\Desktop\DIP\DigitalImageProcessing\src\main\java\DPIoperations\SeparateRGB.java
+C:\Users\Daza_\Desktop\DIP\DigitalImageProcessing\src\main\java\GUI\ImagePanel.java

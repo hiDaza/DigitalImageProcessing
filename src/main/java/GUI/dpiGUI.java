@@ -16,6 +16,7 @@ import DPIoperations.MeanMedianFilters;
 import DPIoperations.RandomNoises;
 import DPIoperations.RandomPositions;
 import DPIoperations.SeparateRGB;
+import DPIoperations.Transformed;
 import LogsImage.ImageBuffer;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -76,6 +77,7 @@ public class dpiGUI extends javax.swing.JFrame {
         mainPanel.add(InterpolationPanel,"Interpolation");
         mainPanel.add(MeanMedianPanel,"MeanMedian");
         mainPanel.add(HighlightPanel,"Highlight");
+        mainPanel.add(CosTransformedPanel,"Transformed");
         imageBuffer = new ImageBuffer();
 
         
@@ -202,6 +204,11 @@ public class dpiGUI extends javax.swing.JFrame {
         gammaTextField = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
+        CosTransformedPanel = new javax.swing.JPanel();
+        notTransformedPanel = new javax.swing.JPanel();
+        jButton20 = new javax.swing.JButton();
+        jButton21 = new javax.swing.JButton();
+        TransformedPanel = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -217,6 +224,8 @@ public class dpiGUI extends javax.swing.JFrame {
         equalizationMenu = new javax.swing.JMenuItem();
         meanMedianMenu = new javax.swing.JMenuItem();
         highlightMenu = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1360, 720));
@@ -1348,6 +1357,76 @@ public class dpiGUI extends javax.swing.JFrame {
 
         getContentPane().add(HighlightPanel, "card12");
 
+        javax.swing.GroupLayout notTransformedPanelLayout = new javax.swing.GroupLayout(notTransformedPanel);
+        notTransformedPanel.setLayout(notTransformedPanelLayout);
+        notTransformedPanelLayout.setHorizontalGroup(
+            notTransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 288, Short.MAX_VALUE)
+        );
+        notTransformedPanelLayout.setVerticalGroup(
+            notTransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 279, Short.MAX_VALUE)
+        );
+
+        jButton20.setText("Aplicar Transormada");
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
+
+        jButton21.setText("Obter Imagem");
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout TransformedPanelLayout = new javax.swing.GroupLayout(TransformedPanel);
+        TransformedPanel.setLayout(TransformedPanelLayout);
+        TransformedPanelLayout.setHorizontalGroup(
+            TransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 275, Short.MAX_VALUE)
+        );
+        TransformedPanelLayout.setVerticalGroup(
+            TransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 279, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout CosTransformedPanelLayout = new javax.swing.GroupLayout(CosTransformedPanel);
+        CosTransformedPanel.setLayout(CosTransformedPanelLayout);
+        CosTransformedPanelLayout.setHorizontalGroup(
+            CosTransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CosTransformedPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(notTransformedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(CosTransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(TransformedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(807, Short.MAX_VALUE))
+        );
+        CosTransformedPanelLayout.setVerticalGroup(
+            CosTransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CosTransformedPanelLayout.createSequentialGroup()
+                .addGroup(CosTransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(TransformedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(CosTransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(CosTransformedPanelLayout.createSequentialGroup()
+                            .addGap(36, 36, 36)
+                            .addComponent(notTransformedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(CosTransformedPanelLayout.createSequentialGroup()
+                            .addGap(128, 128, 128)
+                            .addComponent(jButton20)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jButton21))))
+                .addContainerGap(746, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(CosTransformedPanel, "card13");
+
         jMenu2.setText("Conversor");
 
         jMenuItem2.setText("Abrir Conversor");
@@ -1447,6 +1526,18 @@ public class dpiGUI extends javax.swing.JFrame {
         jMenu3.add(highlightMenu);
 
         jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("Operações 2 Bimestre");
+
+        jMenuItem3.setText("Transformada Discreta do Cosseno");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -2258,6 +2349,42 @@ public class dpiGUI extends javax.swing.JFrame {
        
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        
+        CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
+        cardLayout.show(mainPanel,"Transformed");
+        
+        ImagePanel notFilterMM = new ImagePanel();
+        notFilterMM.setImage(originalImage);
+        notTransformedPanel.removeAll();
+        TransformedPanel.removeAll();
+        notTransformedPanel.setLayout(new BorderLayout());
+        notTransformedPanel.add(notFilterMM, BorderLayout.CENTER);
+        notTransformedPanel.revalidate();
+        notTransformedPanel.repaint();
+        
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton21ActionPerformed
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        // TODO add your handling code here:
+        Transformed transformed = new Transformed();
+        BufferedImage notTransformed = transformed.cosTransformed(originalImage);
+        
+        ImagePanel istransformedPanel = new ImagePanel();
+        istransformedPanel.setImage(notTransformed);
+        TransformedPanel.removeAll();
+        TransformedPanel.setLayout(new BorderLayout());
+        TransformedPanel.add(istransformedPanel, BorderLayout.CENTER);
+        TransformedPanel.revalidate();
+        TransformedPanel.repaint();
+        
+    }//GEN-LAST:event_jButton20ActionPerformed
    
    
     /**
@@ -2299,6 +2426,7 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JPanel BcolorPanel;
     private javax.swing.JTextField BvalueTextField;
     private javax.swing.JPanel ConvertToGray;
+    private javax.swing.JPanel CosTransformedPanel;
     private javax.swing.JPanel EqualizationPanel;
     private javax.swing.JPanel EqualizedPanel;
     private javax.swing.JPanel FilterPanel;
@@ -2316,6 +2444,7 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JPanel RcolorPanel;
     private javax.swing.JTextField RvalueTextField;
     private javax.swing.JPanel TenNoisesPanel;
+    private javax.swing.JPanel TransformedPanel;
     private javax.swing.JTextField XTextField;
     private javax.swing.JTextField YTextField;
     private javax.swing.JTextField cTextField;
@@ -2349,6 +2478,8 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -2382,9 +2513,11 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollBar jScrollBar1;
@@ -2396,6 +2529,7 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JPanel notFilterPanel;
     private javax.swing.JPanel notHighlightPanel;
     private javax.swing.JPanel notInterpoledPanel;
+    private javax.swing.JPanel notTransformedPanel;
     private javax.swing.JPanel originalGrayPanel;
     private javax.swing.JPanel originalPanel;
     private javax.swing.JPanel originaltoRGBPanel;
