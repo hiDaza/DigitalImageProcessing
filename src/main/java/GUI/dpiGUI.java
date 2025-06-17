@@ -3203,7 +3203,7 @@ public class dpiGUI extends javax.swing.JFrame {
         notThinningPanel3.repaint();
     }//GEN-LAST:event_jButton36ActionPerformed
 private void adicionarRuidoEsparso(int centroX, int centroY, int raio) {
-    Random rand = new Random();
+    Random rand = new Random(); 
     for (int x = centroX - raio; x <= centroX + raio; x++) {
         for (int y = centroY - raio; y <= centroY + raio; y++) {
             if (x >= 0 && y >= 0 && x < originalImage.getWidth() && y < originalImage.getHeight()) {

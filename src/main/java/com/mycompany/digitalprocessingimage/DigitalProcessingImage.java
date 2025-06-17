@@ -5,7 +5,7 @@
 package com.mycompany.digitalprocessingimage;
 
 import GUI.dpiGUI;
-import javax.swing.JFrame;
+
 
 /**
  *
