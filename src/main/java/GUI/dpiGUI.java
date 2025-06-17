@@ -7,28 +7,36 @@ package GUI;
 
 import Converter.ColorConverterFrame;
 import DPIoperations.AverageFilter;
+import DPIoperations.ColorImage;
 import DPIoperations.ColorToGray;
 import DPIoperations.Equalization;
 import DPIoperations.GrayToInversal;
 import DPIoperations.Highlight;
 import DPIoperations.Interpolation;
 import DPIoperations.MeanMedianFilters;
+import DPIoperations.MinMax;
 import DPIoperations.RandomNoises;
 import DPIoperations.RandomPositions;
 import DPIoperations.SeparateRGB;
+import DPIoperations.Thinning;
 import DPIoperations.Transformed;
 import LogsImage.ImageBuffer;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Graphics;
+import java.awt.List;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -41,8 +49,13 @@ public class dpiGUI extends javax.swing.JFrame {
     private final ImagePanel imagePanel;
     private final ImageBuffer imageBuffer;
     private BufferedImage originalImage;
+    private Transformed.DCTResult dctResult;
+    private Transformed transformer = new Transformed();
+    private final Random random = new Random();
+    private static final int NOISE_COUNT = 100;   // Quantidade de ruídos
+    private static final int NOISE_RADIUS = 50;   // Raio da área circular
     int optInterpolation = 0;
-    
+    int optimalThreshold = 0;
     int size = 10000;
     //RandomPositions randomPositions = new RandomPositions();
     int vetX[];
@@ -78,11 +91,16 @@ public class dpiGUI extends javax.swing.JFrame {
         mainPanel.add(MeanMedianPanel,"MeanMedian");
         mainPanel.add(HighlightPanel,"Highlight");
         mainPanel.add(CosTransformedPanel,"Transformed");
+        mainPanel.add(MinMaxMediumPointPanel,"minMax");
+        mainPanel.add(ColoredImagePanel,"colored");
+        mainPanel.add(otsuPanel,"otsu");
+        mainPanel.add(ThinningPanel,"thinning");
         imageBuffer = new ImageBuffer();
-
+        
         
     }
-    
+
+     
     private BufferedImage copyImage(BufferedImage source) {
         BufferedImage copy = new BufferedImage(source.getWidth(), source.getHeight(), source.getType());
         Graphics g = copy.getGraphics();
@@ -101,6 +119,7 @@ public class dpiGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         mainPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -209,6 +228,41 @@ public class dpiGUI extends javax.swing.JFrame {
         jButton20 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
         TransformedPanel = new javax.swing.JPanel();
+        jButton22 = new javax.swing.JButton();
+        jButton23 = new javax.swing.JButton();
+        jButton24 = new javax.swing.JButton();
+        LimiarTextField1 = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jAltasButton1 = new javax.swing.JRadioButton();
+        jBaixasRadioButton2 = new javax.swing.JRadioButton();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        MinMaxMediumPointPanel = new javax.swing.JPanel();
+        notMinMaxPanel = new javax.swing.JPanel();
+        minMaxPanel = new javax.swing.JPanel();
+        jButton25 = new javax.swing.JButton();
+        jButton26 = new javax.swing.JButton();
+        jButton27 = new javax.swing.JButton();
+        jButton28 = new javax.swing.JButton();
+        ColoredImagePanel = new javax.swing.JPanel();
+        notColoredPanel = new javax.swing.JPanel();
+        ColoredPanel = new javax.swing.JPanel();
+        jButton29 = new javax.swing.JButton();
+        jButton30 = new javax.swing.JButton();
+        jButton31 = new javax.swing.JButton();
+        otsuPanel = new javax.swing.JPanel();
+        nototsuPanel = new javax.swing.JPanel();
+        otsuApplyPanel = new javax.swing.JPanel();
+        jButton32 = new javax.swing.JButton();
+        jButton33 = new javax.swing.JButton();
+        jButton34 = new javax.swing.JButton();
+        AvisoLabel27 = new javax.swing.JLabel();
+        ThinningPanel = new javax.swing.JPanel();
+        notThinningPanel3 = new javax.swing.JPanel();
+        thinningApplyPanel4 = new javax.swing.JPanel();
+        jButton35 = new javax.swing.JButton();
+        jButton36 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -226,6 +280,10 @@ public class dpiGUI extends javax.swing.JFrame {
         highlightMenu = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1360, 720));
@@ -1357,6 +1415,12 @@ public class dpiGUI extends javax.swing.JFrame {
 
         getContentPane().add(HighlightPanel, "card12");
 
+        notTransformedPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                notTransformedPanelMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout notTransformedPanelLayout = new javax.swing.GroupLayout(notTransformedPanel);
         notTransformedPanel.setLayout(notTransformedPanelLayout);
         notTransformedPanelLayout.setHorizontalGroup(
@@ -1386,12 +1450,55 @@ public class dpiGUI extends javax.swing.JFrame {
         TransformedPanel.setLayout(TransformedPanelLayout);
         TransformedPanelLayout.setHorizontalGroup(
             TransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 275, Short.MAX_VALUE)
+            .addGap(0, 373, Short.MAX_VALUE)
         );
         TransformedPanelLayout.setVerticalGroup(
             TransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 279, Short.MAX_VALUE)
         );
+
+        jButton22.setText("Aplicar inversa da DCT");
+        jButton22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton22ActionPerformed(evt);
+            }
+        });
+
+        jButton23.setText("Aplicar ruído");
+        jButton23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton23ActionPerformed(evt);
+            }
+        });
+
+        jButton24.setText("Aplicar Filtro");
+        jButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton24ActionPerformed(evt);
+            }
+        });
+
+        jLabel23.setText("Limiar");
+
+        jLabel24.setText("Tipo de Filtro");
+
+        jAltasButton1.setText("Passas Altas");
+        jAltasButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAltasButton1ActionPerformed(evt);
+            }
+        });
+
+        jBaixasRadioButton2.setText("Passas Baixas");
+        jBaixasRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBaixasRadioButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel25.setText("---------------------------------");
+
+        jLabel26.setText("---------------------------------");
 
         javax.swing.GroupLayout CosTransformedPanelLayout = new javax.swing.GroupLayout(CosTransformedPanel);
         CosTransformedPanel.setLayout(CosTransformedPanelLayout);
@@ -1400,32 +1507,408 @@ public class dpiGUI extends javax.swing.JFrame {
             .addGroup(CosTransformedPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(notTransformedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(CosTransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(TransformedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(807, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(CosTransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CosTransformedPanelLayout.createSequentialGroup()
+                        .addGroup(CosTransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(CosTransformedPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel23)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel24))
+                            .addGroup(CosTransformedPanelLayout.createSequentialGroup()
+                                .addGroup(CosTransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(CosTransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jButton20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton22, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton23, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel26)
+                                    .addComponent(jLabel25)
+                                    .addGroup(CosTransformedPanelLayout.createSequentialGroup()
+                                        .addGap(36, 36, 36)
+                                        .addComponent(jButton24))
+                                    .addGroup(CosTransformedPanelLayout.createSequentialGroup()
+                                        .addComponent(LimiarTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(CosTransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jBaixasRadioButton2)
+                                            .addComponent(jAltasButton1))))
+                                .addGap(0, 4, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TransformedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(698, Short.MAX_VALUE))
+                    .addGroup(CosTransformedPanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         CosTransformedPanelLayout.setVerticalGroup(
             CosTransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CosTransformedPanelLayout.createSequentialGroup()
-                .addGroup(CosTransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(CosTransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TransformedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(CosTransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(CosTransformedPanelLayout.createSequentialGroup()
-                            .addGap(36, 36, 36)
-                            .addComponent(notTransformedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(CosTransformedPanelLayout.createSequentialGroup()
-                            .addGap(128, 128, 128)
-                            .addComponent(jButton20)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jButton21))))
-                .addContainerGap(746, Short.MAX_VALUE))
+                    .addGroup(CosTransformedPanelLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(notTransformedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(CosTransformedPanelLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jButton20)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton22)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton23)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(CosTransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel24)
+                            .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(CosTransformedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jAltasButton1)
+                            .addComponent(LimiarTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jBaixasRadioButton2)
+                        .addGap(13, 13, 13)
+                        .addComponent(jButton24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel25)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton21)
+                .addContainerGap(711, Short.MAX_VALUE))
         );
 
         getContentPane().add(CosTransformedPanel, "card13");
+
+        javax.swing.GroupLayout notMinMaxPanelLayout = new javax.swing.GroupLayout(notMinMaxPanel);
+        notMinMaxPanel.setLayout(notMinMaxPanelLayout);
+        notMinMaxPanelLayout.setHorizontalGroup(
+            notMinMaxPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 212, Short.MAX_VALUE)
+        );
+        notMinMaxPanelLayout.setVerticalGroup(
+            notMinMaxPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 277, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout minMaxPanelLayout = new javax.swing.GroupLayout(minMaxPanel);
+        minMaxPanel.setLayout(minMaxPanelLayout);
+        minMaxPanelLayout.setHorizontalGroup(
+            minMaxPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 282, Short.MAX_VALUE)
+        );
+        minMaxPanelLayout.setVerticalGroup(
+            minMaxPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 250, Short.MAX_VALUE)
+        );
+
+        jButton25.setText("Mínimo");
+        jButton25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton25ActionPerformed(evt);
+            }
+        });
+
+        jButton26.setText("Máximo");
+        jButton26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton26ActionPerformed(evt);
+            }
+        });
+
+        jButton27.setText("Ponto médio");
+        jButton27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton27ActionPerformed(evt);
+            }
+        });
+
+        jButton28.setText("Obter Imagem");
+        jButton28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton28ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout MinMaxMediumPointPanelLayout = new javax.swing.GroupLayout(MinMaxMediumPointPanel);
+        MinMaxMediumPointPanel.setLayout(MinMaxMediumPointPanelLayout);
+        MinMaxMediumPointPanelLayout.setHorizontalGroup(
+            MinMaxMediumPointPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MinMaxMediumPointPanelLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(notMinMaxPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81)
+                .addGroup(MinMaxMediumPointPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(148, 148, 148)
+                .addComponent(minMaxPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(693, 693, 693))
+        );
+        MinMaxMediumPointPanelLayout.setVerticalGroup(
+            MinMaxMediumPointPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MinMaxMediumPointPanelLayout.createSequentialGroup()
+                .addGroup(MinMaxMediumPointPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MinMaxMediumPointPanelLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(MinMaxMediumPointPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(minMaxPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(notMinMaxPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(MinMaxMediumPointPanelLayout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(jButton25)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton26)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton27)
+                        .addGap(27, 27, 27)
+                        .addComponent(jButton28)))
+                .addContainerGap(754, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(MinMaxMediumPointPanel, "card14");
+
+        javax.swing.GroupLayout notColoredPanelLayout = new javax.swing.GroupLayout(notColoredPanel);
+        notColoredPanel.setLayout(notColoredPanelLayout);
+        notColoredPanelLayout.setHorizontalGroup(
+            notColoredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 257, Short.MAX_VALUE)
+        );
+        notColoredPanelLayout.setVerticalGroup(
+            notColoredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 238, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout ColoredPanelLayout = new javax.swing.GroupLayout(ColoredPanel);
+        ColoredPanel.setLayout(ColoredPanelLayout);
+        ColoredPanelLayout.setHorizontalGroup(
+            ColoredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 243, Short.MAX_VALUE)
+        );
+        ColoredPanelLayout.setVerticalGroup(
+            ColoredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 223, Short.MAX_VALUE)
+        );
+
+        jButton29.setText("Aplicar Cor");
+        jButton29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton29ActionPerformed(evt);
+            }
+        });
+
+        jButton30.setText("Obter Image");
+        jButton30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton30ActionPerformed(evt);
+            }
+        });
+
+        jButton31.setText("Equalizaçao de Imagem com L do HSL ");
+        jButton31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton31ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ColoredImagePanelLayout = new javax.swing.GroupLayout(ColoredImagePanel);
+        ColoredImagePanel.setLayout(ColoredImagePanelLayout);
+        ColoredImagePanelLayout.setHorizontalGroup(
+            ColoredImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ColoredImagePanelLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(notColoredPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(ColoredImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ColoredImagePanelLayout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(jButton31)
+                        .addGap(64, 64, 64))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ColoredImagePanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(ColoredImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ColoredImagePanelLayout.createSequentialGroup()
+                                .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(129, 129, 129))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ColoredImagePanelLayout.createSequentialGroup()
+                                .addComponent(jButton30)
+                                .addGap(132, 132, 132)))))
+                .addComponent(ColoredPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(667, Short.MAX_VALUE))
+        );
+        ColoredImagePanelLayout.setVerticalGroup(
+            ColoredImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ColoredImagePanelLayout.createSequentialGroup()
+                .addGroup(ColoredImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ColoredPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(ColoredImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(ColoredImagePanelLayout.createSequentialGroup()
+                            .addGap(43, 43, 43)
+                            .addComponent(notColoredPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(ColoredImagePanelLayout.createSequentialGroup()
+                            .addGap(143, 143, 143)
+                            .addComponent(jButton29)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton31)
+                            .addGap(29, 29, 29)
+                            .addComponent(jButton30))))
+                .addContainerGap(780, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(ColoredImagePanel, "card15");
+
+        javax.swing.GroupLayout nototsuPanelLayout = new javax.swing.GroupLayout(nototsuPanel);
+        nototsuPanel.setLayout(nototsuPanelLayout);
+        nototsuPanelLayout.setHorizontalGroup(
+            nototsuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 246, Short.MAX_VALUE)
+        );
+        nototsuPanelLayout.setVerticalGroup(
+            nototsuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 241, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout otsuApplyPanelLayout = new javax.swing.GroupLayout(otsuApplyPanel);
+        otsuApplyPanel.setLayout(otsuApplyPanelLayout);
+        otsuApplyPanelLayout.setHorizontalGroup(
+            otsuApplyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 247, Short.MAX_VALUE)
+        );
+        otsuApplyPanelLayout.setVerticalGroup(
+            otsuApplyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 220, Short.MAX_VALUE)
+        );
+
+        jButton32.setText("Calcular OTSU");
+        jButton32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton32ActionPerformed(evt);
+            }
+        });
+
+        jButton33.setText("Binarizar");
+        jButton33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton33ActionPerformed(evt);
+            }
+        });
+
+        jButton34.setText("Limiarizar");
+        jButton34.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton34ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout otsuPanelLayout = new javax.swing.GroupLayout(otsuPanel);
+        otsuPanel.setLayout(otsuPanelLayout);
+        otsuPanelLayout.setHorizontalGroup(
+            otsuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(otsuPanelLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(nototsuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addGroup(otsuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AvisoLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(114, 114, 114)
+                .addComponent(otsuApplyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(746, Short.MAX_VALUE))
+        );
+        otsuPanelLayout.setVerticalGroup(
+            otsuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(otsuPanelLayout.createSequentialGroup()
+                .addGroup(otsuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(otsuPanelLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(otsuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(otsuApplyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nototsuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(otsuPanelLayout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(jButton32)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(AvisoLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(jButton33)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton34)))
+                .addContainerGap(786, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(otsuPanel, "card16");
+
+        javax.swing.GroupLayout notThinningPanel3Layout = new javax.swing.GroupLayout(notThinningPanel3);
+        notThinningPanel3.setLayout(notThinningPanel3Layout);
+        notThinningPanel3Layout.setHorizontalGroup(
+            notThinningPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 287, Short.MAX_VALUE)
+        );
+        notThinningPanel3Layout.setVerticalGroup(
+            notThinningPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 255, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout thinningApplyPanel4Layout = new javax.swing.GroupLayout(thinningApplyPanel4);
+        thinningApplyPanel4.setLayout(thinningApplyPanel4Layout);
+        thinningApplyPanel4Layout.setHorizontalGroup(
+            thinningApplyPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 315, Short.MAX_VALUE)
+        );
+        thinningApplyPanel4Layout.setVerticalGroup(
+            thinningApplyPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 275, Short.MAX_VALUE)
+        );
+
+        jButton35.setText("Afinar Imagem");
+        jButton35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton35ActionPerformed(evt);
+            }
+        });
+
+        jButton36.setText("Obter Imagem");
+        jButton36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton36ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ThinningPanelLayout = new javax.swing.GroupLayout(ThinningPanel);
+        ThinningPanel.setLayout(ThinningPanelLayout);
+        ThinningPanelLayout.setHorizontalGroup(
+            ThinningPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ThinningPanelLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(notThinningPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69)
+                .addGroup(ThinningPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton35)
+                    .addComponent(jButton36))
+                .addGap(59, 59, 59)
+                .addComponent(thinningApplyPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(685, Short.MAX_VALUE))
+        );
+        ThinningPanelLayout.setVerticalGroup(
+            ThinningPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ThinningPanelLayout.createSequentialGroup()
+                .addGroup(ThinningPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ThinningPanelLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(ThinningPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(thinningApplyPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(notThinningPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(ThinningPanelLayout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(jButton35)
+                        .addGap(61, 61, 61)
+                        .addComponent(jButton36)))
+                .addContainerGap(764, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(ThinningPanel, "card17");
 
         jMenu2.setText("Conversor");
 
@@ -1537,6 +2020,38 @@ public class dpiGUI extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem3);
 
+        jMenuItem4.setText("Min/Max/Ponto médio");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem4);
+
+        jMenuItem5.setText("Colorir Image E EQUALIZAÇÃO");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem5);
+
+        jMenuItem6.setText("OTSU");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem6);
+
+        jMenuItem7.setText("Esqueleto");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem7);
+
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
@@ -1596,12 +2111,6 @@ public class dpiGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
         cardLayout.show(mainPanel,"ConvertToGray");
-        
-        
-        
-        
-
-  
             ImagePanel OriginalPanel = new ImagePanel();
             
             OriginalImagePanel.removeAll();
@@ -2369,15 +2878,29 @@ public class dpiGUI extends javax.swing.JFrame {
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
         // TODO add your handling code here:
+        ImagePanel getImg = new ImagePanel();
+        originalImage = getImg.panelToBufferedImage(TransformedPanel);
+
+        notTransformedPanel.removeAll();
+        getImg.setImage(originalImage);
+        notTransformedPanel.setLayout(new BorderLayout());
+        notTransformedPanel.add(getImg, BorderLayout.CENTER);
+        notTransformedPanel.revalidate();
+        notTransformedPanel.repaint();
+        
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         // TODO add your handling code here:
-        Transformed transformed = new Transformed();
-        BufferedImage notTransformed = transformed.cosTransformed(originalImage);
+        if (originalImage == null) {
+            JOptionPane.showMessageDialog(this, "Carregue uma imagem primeiro!");
+            return;
+        }
         
+        dctResult = transformer.applyDCT(originalImage);
+
         ImagePanel istransformedPanel = new ImagePanel();
-        istransformedPanel.setImage(notTransformed);
+        istransformedPanel.setImage(dctResult.spectrumImage);
         TransformedPanel.removeAll();
         TransformedPanel.setLayout(new BorderLayout());
         TransformedPanel.add(istransformedPanel, BorderLayout.CENTER);
@@ -2385,6 +2908,333 @@ public class dpiGUI extends javax.swing.JFrame {
         TransformedPanel.repaint();
         
     }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+        // TODO add your handling code here:
+        if (dctResult == null) {
+            JOptionPane.showMessageDialog(this, "Aplique a DCT primeiro!");
+            return;
+        }
+        
+        BufferedImage reconstructed = transformer.reconstructFromDCT(dctResult, originalImage);
+
+        ImagePanel istransformedPanel = new ImagePanel();
+        istransformedPanel.setImage(reconstructed);
+        TransformedPanel.removeAll();
+        TransformedPanel.setLayout(new BorderLayout());
+        TransformedPanel.add(istransformedPanel, BorderLayout.CENTER);
+        TransformedPanel.revalidate();
+        TransformedPanel.repaint();
+    }//GEN-LAST:event_jButton22ActionPerformed
+
+    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
+        // TODO add your handling code here:
+        Transformed noise = new Transformed();
+     //   BufferedImage notTransformed = noise.applyNoise(originalImage, size);
+        ImagePanel istransformedPanel = new ImagePanel();
+      //  istransformedPanel.setImage(notTransformed);
+        TransformedPanel.removeAll();
+        TransformedPanel.setLayout(new BorderLayout());
+        TransformedPanel.add(istransformedPanel, BorderLayout.CENTER);
+        TransformedPanel.revalidate();
+        TransformedPanel.repaint();
+        
+    }//GEN-LAST:event_jButton23ActionPerformed
+
+    private void jAltasButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAltasButton1ActionPerformed
+        // TODO add your handling code here:
+        if(jBaixasRadioButton2.isSelected()){
+            jAltasButton1.setSelected(false);
+        }
+    }//GEN-LAST:event_jAltasButton1ActionPerformed
+
+    private void jBaixasRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBaixasRadioButton2ActionPerformed
+        // TODO add your handling code here:
+        if(jAltasButton1.isSelected()){
+            jBaixasRadioButton2.setSelected(false);
+        }
+    }//GEN-LAST:event_jBaixasRadioButton2ActionPerformed
+
+    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+        // TODO add your handling code here:
+         if (dctResult == null) {
+            JOptionPane.showMessageDialog(this, "Aplique a DCT primeiro!");
+            return;
+        }
+        
+        Transformed.FilterType opt = null;
+        int cut = Integer.parseInt(LimiarTextField1.getText());
+
+        if(jAltasButton1.isSelected()) {
+            opt = Transformed.FilterType.PASSA_ALTA; 
+        }
+        if(jBaixasRadioButton2.isSelected()) {
+            opt = Transformed.FilterType.PASSA_BAIXA; 
+        }
+        
+        double normalizeCut = cut / 100;
+        // Aplica o filtro NOS COEFICIENTES ATUAIS
+        dctResult = transformer.applyFilterToDCT(dctResult, opt, normalizeCut);
+        
+        // Mostra o novo espectro filtrado
+        ImagePanel istransformedPanel = new ImagePanel();
+        istransformedPanel.setImage(dctResult.spectrumImage);
+        TransformedPanel.removeAll();
+        TransformedPanel.setLayout(new BorderLayout());
+        TransformedPanel.add(istransformedPanel, BorderLayout.CENTER);
+        TransformedPanel.revalidate();
+        TransformedPanel.repaint();
+    }//GEN-LAST:event_jButton24ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
+        cardLayout.show(mainPanel,"minMax");
+            ImagePanel OriginalPanel = new ImagePanel();
+            notMinMaxPanel.removeAll();
+            notMinMaxPanel.removeAll();
+            OriginalPanel.setImage(originalImage);
+            notMinMaxPanel.setLayout(new BorderLayout());
+            notMinMaxPanel.add(OriginalPanel, BorderLayout.CENTER);
+            notMinMaxPanel.revalidate();
+            notMinMaxPanel.repaint();
+        
+        
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
+        // TODO add your handling code here:
+        
+        MinMax minFilter = new MinMax();
+        
+        BufferedImage minMaxF = minFilter.minFilter(originalImage);
+        ImagePanel MeanFiltered = new ImagePanel();
+        MeanFiltered.setImage(minMaxF);
+        minMaxPanel.removeAll();
+        minMaxPanel.setLayout(new BorderLayout());
+        minMaxPanel.add(MeanFiltered, BorderLayout.CENTER);
+        minMaxPanel.revalidate();
+        minMaxPanel.repaint();
+        
+    }//GEN-LAST:event_jButton25ActionPerformed
+
+    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
+        // TODO add your handling code here:
+        ImagePanel getImg = new ImagePanel();
+        originalImage = getImg.panelToBufferedImage(minMaxPanel);
+        
+        notMinMaxPanel.removeAll();
+        getImg.setImage(originalImage);
+        notMinMaxPanel.setLayout(new BorderLayout());
+        notMinMaxPanel.add(getImg, BorderLayout.CENTER);
+        notMinMaxPanel.revalidate();
+        notMinMaxPanel.repaint();
+    }//GEN-LAST:event_jButton28ActionPerformed
+
+    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
+        // TODO add your handling code here:
+        MinMax minFilter = new MinMax();
+        BufferedImage minMaxF = minFilter.maxFilter(originalImage);
+        ImagePanel MeanFiltered = new ImagePanel();
+        MeanFiltered.setImage(minMaxF);
+        minMaxPanel.removeAll();
+        minMaxPanel.setLayout(new BorderLayout());
+        minMaxPanel.add(MeanFiltered, BorderLayout.CENTER);
+        minMaxPanel.revalidate();
+        minMaxPanel.repaint();
+    }//GEN-LAST:event_jButton26ActionPerformed
+
+    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
+        // TODO add your handling code here:
+        MinMax minFilter = new MinMax();
+        BufferedImage minMaxF = minFilter.midpointFilter(originalImage);
+        ImagePanel MeanFiltered = new ImagePanel();
+        MeanFiltered.setImage(minMaxF);
+        minMaxPanel.removeAll();
+        minMaxPanel.setLayout(new BorderLayout());
+        minMaxPanel.add(MeanFiltered, BorderLayout.CENTER);
+        minMaxPanel.revalidate();
+        minMaxPanel.repaint();
+    }//GEN-LAST:event_jButton27ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
+        cardLayout.show(mainPanel,"colored");
+        ImagePanel OriginalPanel = new ImagePanel();
+        notColoredPanel.removeAll();
+        notColoredPanel.removeAll();
+        OriginalPanel.setImage(originalImage);
+        notColoredPanel.setLayout(new BorderLayout());
+        notColoredPanel.add(OriginalPanel, BorderLayout.CENTER);
+        notColoredPanel.revalidate();
+        notColoredPanel.repaint();
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
+        // TODO add your handling code here:
+
+        ColorImage colored = new ColorImage();
+        BufferedImage colorImage = colored.applyColorScale(originalImage);
+        ImagePanel MeanFiltered = new ImagePanel();
+        MeanFiltered.setImage(colorImage);
+        ColoredPanel.removeAll();
+        ColoredPanel.setLayout(new BorderLayout());
+        ColoredPanel.add(MeanFiltered, BorderLayout.CENTER);
+        ColoredPanel.revalidate();
+        ColoredPanel.repaint();
+    }//GEN-LAST:event_jButton29ActionPerformed
+
+    private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
+        // TODO add your handling code here:
+
+        ImagePanel getImg = new ImagePanel();
+        originalImage = getImg.panelToBufferedImage(minMaxPanel);
+        
+        notColoredPanel.removeAll();
+        getImg.setImage(originalImage);
+        notColoredPanel.setLayout(new BorderLayout());
+        notColoredPanel.add(getImg, BorderLayout.CENTER);
+        notColoredPanel.revalidate();
+        notColoredPanel.repaint();
+        
+    }//GEN-LAST:event_jButton30ActionPerformed
+
+    private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
+        // TODO add your handling code here:
+        ColorImage colored = new ColorImage();
+        BufferedImage colorImage = colored.equalizeHSL(originalImage);
+        ImagePanel equalizeL = new ImagePanel();
+        equalizeL.setImage(colorImage);
+        ColoredPanel.removeAll();
+        ColoredPanel.setLayout(new BorderLayout());
+        ColoredPanel.add(equalizeL, BorderLayout.CENTER);
+        ColoredPanel.revalidate();
+        ColoredPanel.repaint();
+        
+    }//GEN-LAST:event_jButton31ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
+        cardLayout.show(mainPanel,"otsu");
+        ImagePanel OriginalPanel = new ImagePanel();
+        nototsuPanel.removeAll();
+        nototsuPanel.removeAll();
+        OriginalPanel.setImage(originalImage);
+        nototsuPanel.setLayout(new BorderLayout());
+        nototsuPanel.add(OriginalPanel, BorderLayout.CENTER);
+        nototsuPanel.revalidate();
+        nototsuPanel.repaint();
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
+        // TODO add your handling code here:
+        Highlight otsu = new Highlight();
+        optimalThreshold = otsu.calculateOtsuThreshold(originalImage);
+        AvisoLabel27.setText("OTSU CALCULADO");
+    }//GEN-LAST:event_jButton32ActionPerformed
+
+    private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
+        // TODO add your handling code here:
+        Highlight otsu = new Highlight();
+        BufferedImage otsuImage = otsu.Binarization(originalImage, optimalThreshold);
+        ImagePanel equalizeL = new ImagePanel();
+        equalizeL.setImage(otsuImage);
+        otsuApplyPanel.removeAll();
+        otsuApplyPanel.setLayout(new BorderLayout());
+        otsuApplyPanel.add(equalizeL, BorderLayout.CENTER);
+        otsuApplyPanel.revalidate();
+        otsuApplyPanel.repaint();
+    }//GEN-LAST:event_jButton33ActionPerformed
+
+    private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
+        // TODO add your handling code here:
+
+        Highlight otsu = new Highlight();
+        BufferedImage otsuImage = otsu.thresholding(originalImage, optimalThreshold);
+        ImagePanel equalizeL = new ImagePanel();
+        equalizeL.setImage(otsuImage);
+        otsuApplyPanel.removeAll();
+        otsuApplyPanel.setLayout(new BorderLayout());
+        otsuApplyPanel.add(equalizeL, BorderLayout.CENTER);
+        otsuApplyPanel.revalidate();
+        otsuApplyPanel.repaint();
+    }//GEN-LAST:event_jButton34ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+
+        CardLayout cardLayout =  (CardLayout) mainPanel.getLayout();
+        cardLayout.show(mainPanel,"thinning");
+        ImagePanel OriginalPanel = new ImagePanel();
+        notThinningPanel3.removeAll();
+        notThinningPanel3.removeAll();
+        OriginalPanel.setImage(originalImage);
+        notThinningPanel3.setLayout(new BorderLayout());
+        notThinningPanel3.add(OriginalPanel, BorderLayout.CENTER);
+        notThinningPanel3.revalidate();
+        notThinningPanel3.repaint();
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
+        // TODO add your handling code here:
+        Thinning thinning = new Thinning();
+        BufferedImage thinningImage = thinning.zhangSuenThinning(originalImage);
+        ImagePanel equalizeL = new ImagePanel();
+        equalizeL.setImage(thinningImage);
+        thinningApplyPanel4.removeAll();
+        thinningApplyPanel4.setLayout(new BorderLayout());
+        thinningApplyPanel4.add(equalizeL, BorderLayout.CENTER);
+        thinningApplyPanel4.revalidate();
+        thinningApplyPanel4.repaint();
+    }//GEN-LAST:event_jButton35ActionPerformed
+
+    private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
+        // TODO add your handling code here:
+        ImagePanel getImg = new ImagePanel();
+        originalImage = getImg.panelToBufferedImage(FilterPanel);
+        
+        notThinningPanel3.removeAll();
+        getImg.setImage(originalImage);
+        notThinningPanel3.setLayout(new BorderLayout());
+        notThinningPanel3.add(getImg, BorderLayout.CENTER);
+        notThinningPanel3.revalidate();
+        notThinningPanel3.repaint();
+    }//GEN-LAST:event_jButton36ActionPerformed
+private void adicionarRuidoEsparso(int centroX, int centroY, int raio) {
+    Random rand = new Random();
+    for (int x = centroX - raio; x <= centroX + raio; x++) {
+        for (int y = centroY - raio; y <= centroY + raio; y++) {
+            if (x >= 0 && y >= 0 && x < originalImage.getWidth() && y < originalImage.getHeight()) {
+                double distancia = Math.sqrt(Math.pow(x - centroX, 2) + Math.pow(y - centroY, 2));
+                if (distancia <= raio) {
+                    // Apenas alguns pixels serão alterados (ex.: 15% de chance)
+                    if (rand.nextDouble() < 0.15) {
+                        aplicarRuidoNoPixel(x, y);
+                    }
+                }
+            }
+        }
+    }
+    repaint();
+}
+private void aplicarRuidoNoPixel(int x, int y) {
+    Random rand = new Random();
+    int rgb = 0xFFFFFF;
+    originalImage.setRGB(x, y, rgb);
+}
+    private void notTransformedPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notTransformedPanelMouseClicked
+        // TODO add your handling code here:
+        int clickX = evt.getX();
+        int clickY = evt.getY();
+
+        // Defina o raio da área de ruído
+        int raio = 50; // por exemplo, 50 pixels em volta
+
+        // Chama a função para adicionar ruído ao redor do clique
+        adicionarRuidoEsparso(clickX, clickY, raio);  
+    }//GEN-LAST:event_notTransformedPanelMouseClicked
    
    
     /**
@@ -2423,8 +3273,11 @@ public class dpiGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AvisoLabel27;
     private javax.swing.JPanel BcolorPanel;
     private javax.swing.JTextField BvalueTextField;
+    private javax.swing.JPanel ColoredImagePanel;
+    private javax.swing.JPanel ColoredPanel;
     private javax.swing.JPanel ConvertToGray;
     private javax.swing.JPanel CosTransformedPanel;
     private javax.swing.JPanel EqualizationPanel;
@@ -2437,16 +3290,20 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JPanel HighlitedPanel;
     private javax.swing.JPanel InterpolationPanel;
     private javax.swing.JPanel InterpoledPanel;
+    private javax.swing.JTextField LimiarTextField1;
     private javax.swing.JPanel MeanMedianPanel;
+    private javax.swing.JPanel MinMaxMediumPointPanel;
     private javax.swing.JPanel OriginalColorsPanel;
     private javax.swing.JPanel OriginalImagePanel;
     private javax.swing.JTextField RGBTextField;
     private javax.swing.JPanel RcolorPanel;
     private javax.swing.JTextField RvalueTextField;
     private javax.swing.JPanel TenNoisesPanel;
+    private javax.swing.JPanel ThinningPanel;
     private javax.swing.JPanel TransformedPanel;
     private javax.swing.JTextField XTextField;
     private javax.swing.JTextField YTextField;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField cTextField;
     private javax.swing.JPanel eighthPanel;
     private javax.swing.JMenuItem equalizationMenu;
@@ -2466,6 +3323,8 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JButton inversalButton;
     private javax.swing.JPanel inversalGrayPanel;
     private javax.swing.JPanel inversalPanel;
+    private javax.swing.JRadioButton jAltasButton1;
+    private javax.swing.JRadioButton jBaixasRadioButton2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -2480,7 +3339,22 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
+    private javax.swing.JButton jButton22;
+    private javax.swing.JButton jButton23;
+    private javax.swing.JButton jButton24;
+    private javax.swing.JButton jButton25;
+    private javax.swing.JButton jButton26;
+    private javax.swing.JButton jButton27;
+    private javax.swing.JButton jButton28;
+    private javax.swing.JButton jButton29;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton30;
+    private javax.swing.JButton jButton31;
+    private javax.swing.JButton jButton32;
+    private javax.swing.JButton jButton33;
+    private javax.swing.JButton jButton34;
+    private javax.swing.JButton jButton35;
+    private javax.swing.JButton jButton36;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -2503,6 +3377,10 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -2518,6 +3396,10 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollBar jScrollBar1;
@@ -2525,14 +3407,21 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JTextField mTextField;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuItem meanMedianMenu;
+    private javax.swing.JPanel minMaxPanel;
+    private javax.swing.JPanel notColoredPanel;
     private javax.swing.JPanel notEqualizadePanel;
     private javax.swing.JPanel notFilterPanel;
     private javax.swing.JPanel notHighlightPanel;
     private javax.swing.JPanel notInterpoledPanel;
+    private javax.swing.JPanel notMinMaxPanel;
+    private javax.swing.JPanel notThinningPanel3;
     private javax.swing.JPanel notTransformedPanel;
+    private javax.swing.JPanel nototsuPanel;
     private javax.swing.JPanel originalGrayPanel;
     private javax.swing.JPanel originalPanel;
     private javax.swing.JPanel originaltoRGBPanel;
+    private javax.swing.JPanel otsuApplyPanel;
+    private javax.swing.JPanel otsuPanel;
     private javax.swing.JPanel picPixelsPanel;
     private javax.swing.JPanel pixelsImagePanel;
     private javax.swing.JMenuItem randonNoisesMenu;
@@ -2540,6 +3429,7 @@ public class dpiGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem separeteRGBMenu;
     private javax.swing.JPanel seventhPanel;
     private javax.swing.JPanel sixthPanel;
+    private javax.swing.JPanel thinningApplyPanel4;
     private javax.swing.JPanel thirdPanel;
     private javax.swing.JTextField thresholdTextField;
     private javax.swing.JMenuItem toGrayMenu;

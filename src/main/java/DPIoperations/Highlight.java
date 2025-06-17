@@ -61,7 +61,71 @@ public class Highlight {
             }
         }
         return thresholded;
-    } 
+    }
+    
+    
+    public int calculateOtsuThreshold(BufferedImage img) {
+        // 1. Calcular histograma da imagem em escala de cinza
+        int[] histogram = new int[256];
+        int totalPixels = img.getWidth() * img.getHeight();
+        
+        for (int y = 0; y < img.getHeight(); y++) {
+            for (int x = 0; x < img.getWidth(); x++) {
+                int rgb = img.getRGB(x, y);
+                int r = (rgb >> 16) & 0xFF;
+                int g = (rgb >> 8) & 0xFF;
+                int b = rgb & 0xFF;
+                int gray = (int)(0.299 * r + 0.587 * g + 0.114 * b);
+                histogram[gray]++;
+            }
+        }
+        
+        // 2. Calcular probabilidades
+        double[] probabilities = new double[256];
+        for (int i = 0; i < 256; i++) {
+            probabilities[i] = (double)histogram[i] / totalPixels;
+        }
+        
+        // 3. Encontrar limiar ótimo
+        double maxVariance = 0;
+        int optimalThreshold = 0;
+        
+        for (int t = 0; t < 256; t++) {
+            double w0 = 0; // Probabilidade acumulada classe 0
+            double w1 = 0; // Probabilidade acumulada classe 1
+            double sum0 = 0; // Soma ponderada classe 0
+            double sum1 = 0; // Soma ponderada classe 1
+            
+            // Calcular pesos e médias para as duas classes
+            for (int i = 0; i < 256; i++) {
+                if (i <= t) {
+                    w0 += probabilities[i];
+                    sum0 += i * probabilities[i];
+                } else {
+                    w1 += probabilities[i];
+                    sum1 += i * probabilities[i];
+                }
+            }
+            
+            // Evitar divisão por zero
+            if (w0 == 0 || w1 == 0) continue;
+            
+            double mean0 = sum0 / w0;
+            double mean1 = sum1 / w1;
+            
+            // Calcular variância inter-classe
+            double variance = w0 * w1 * (mean0 - mean1) * (mean0 - mean1);
+            
+            // Atualizar limiar ótimo
+            if (variance > maxVariance) {
+                maxVariance = variance;
+                optimalThreshold = t;
+            }
+        }
+        
+        return optimalThreshold;
+    }
+    
     
     
     private int intensity(int rgb){
